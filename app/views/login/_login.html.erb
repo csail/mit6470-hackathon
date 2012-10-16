@@ -1,0 +1,15 @@
+<%= form_tag("/submit_login", :method => "post", :id => "login_form") do %>
+  <h2>Sign in</h2>
+  <hr />
+  <%= label_tag :email, "Email" %>
+  <%= text_field_tag :email, session[:autocomplete_email] %>
+  <div class="clear"> </div>
+  <%= label_tag :password, "Password" %>
+  <%= password_field_tag :password, "" %>
+  <div class="clear"> </div>
+  <%= submit_tag "Sign In" %>
+  <hr />
+  <p id="new_users">
+    Don't have an account yet?  Register <%= link_to 'here', '/register' %>.
+  </p>
+<% end %>

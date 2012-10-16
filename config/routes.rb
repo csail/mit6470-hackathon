@@ -1,4 +1,21 @@
 Jampatch::Application.routes.draw do
+  resources :users
+
+  root :to => 'home#index'
+
+  get "/login" => "login#index"
+  get "/register" => "login#register"
+  post "/submit_login" => "login#submit_login"
+  post "/submit_logout" => "login#submit_logout"
+  post "/submit_registration" => "login#submit_registration"
+  get "/user/:user_id" => "login#user"
+
+  post "/edit_email" => "login#edit_email"
+  post "/edit_display_name" => "login#edit_display_name"
+  post "/edit_region" => "login#edit_region"
+  post "/edit_password" => "login#edit_password"
+  post "/delete_account" => "login#delete_account"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

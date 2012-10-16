@@ -1,0 +1,107 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "login" %>
+  <%= stylesheet_link_tag "community" %>
+  <%= javascript_include_tag "login" %>
+<% end %>
+
+<% ac = ApplicationController.new %>
+
+<h2><%= @this_user.name %></h2>
+<hr />
+
+<h3>Account Information</h3>
+
+<div class="user_field_label">Email</div>
+<div class="user_field_data">
+  <%= @this_user.email %>
+  <% if @this_is_me %>
+    <%= link_to image_tag("edit.png", :class => "user_field_edit"), "#edit_email_content", :id => "edit_email_link" %>
+  <% end %>
+</div>
+<div class="clear"> </div>
+
+<div class="user_field_label">Display Name</div>
+<div class="user_field_data">
+  <%= @this_user.name %>
+  <% if @this_is_me %>
+    <%= link_to image_tag("edit.png", :class => "user_field_edit"), "#edit_display_name_content", :id => "edit_display_name_link" %>
+  <% end %>
+</div>
+<div class="clear"> </div>
+
+<div class="user_field_label">Region</div>
+<div class="user_field_data">
+  <%= ac.get_city_name @this_user.region %>
+  <% if @this_is_me %>
+    <%= link_to image_tag("edit.png", :class => "user_field_edit"), "#edit_region_content", :id => "edit_region_link" %>
+  <% end %>
+</div>
+<div class="clear"> </div>
+
+<% if @this_is_me %>
+  <div class="user_field_label">Password</div>
+  <div class="user_field_data"><span class="password">&lt;hidden&gt;</span><%= link_to image_tag("edit.png", :class => "user_field_edit"), "#edit_password_content", :id => "edit_password_link" %></div>
+  <div class="clear"> </div>
+<% end %>
+
+<% if @this_is_me %>
+  <div id="delete_account_container">
+    If you would like to delete your account, <%= link_to 'click here', '#delete_account_content', :id => "delete_account_link" %>.
+    <%= form_tag("/delete_account", :id => 'delete_account_form', :class => "hidden", :method => "post") do %>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="hidden">
+  <div id="edit_email_content">
+    <%= form_tag("/edit_email", :method => "post", :id => "edit_email_form") do %>
+      <h2>Edit Email Address</h2>
+      <hr />
+      <%= label_tag :email, "Email" %>
+      <%= text_field_tag :email, @this_user.email %>
+      <div class="clear"> </div>
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+  <div id="edit_display_name_content">
+    <%= form_tag("/edit_name", :method => "post", :id => "edit_name_form") do %>
+      <h2>Edit Name</h2>
+      <hr />
+      <%= label_tag :name, "Name" %>
+      <%= text_field_tag :name, @this_user.name %>
+      <div class="clear"> </div>
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+  <div id="edit_region_content">
+    <%= form_tag("/edit_region", :method => "post", :id => "edit_region_form") do %>
+      <h2>Edit Region</h2>
+      <hr />
+      <%= label_tag :region, "Region" %>
+      <%= text_field_tag :region, @this_user.region %>
+      <div class="clear"> </div>
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+  <div id="edit_password_content">
+    <%= form_tag("/edit_password", :method => "post", :id => "edit_password_form") do %>
+      <h2>Edit Password</h2>
+      <hr />
+      <%= label_tag :password, "Password" %>
+      <%= password_field_tag :password %>
+      <div class="clear"> </div>
+      <%= label_tag :password, "Re-type Password" %>
+      <%= password_field_tag :repassword %>
+      <div class="clear"> </div>
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+  <div id="delete_account_content">
+    <%= form_tag("/delete_account", :method => "post", :id => "delete_account_form", :class => "confirmation_form") do %>
+      <h2>Confirm Account Deletion</h2>
+      <hr />
+      <p>Are you sure you want to delete your account?</p>
+      <%= submit_tag "Confirm", :id => "confirm_delete_account_button" %>
+    <% end %>
+  </div>
+</div>
