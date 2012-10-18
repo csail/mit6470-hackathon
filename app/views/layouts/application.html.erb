@@ -4,11 +4,56 @@
   <title>Jampatch</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= yield :head %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
 
-<%= yield %>
+  <div id="header_container">
+    <div id="header">
+      <div id="logo_container">
+      </div>
+      <div id="login_container">
+        <% if @user %>
+          <%= link_to @user.name, '/account/'+@user.id.to_s %> &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to_function "Log Out", "$('form#log_out_form').submit();" %>
+          <%= form_tag("/submit_logout", :id => 'log_out_form', :class => "hidden", :method => "post") do %>
+          <% end %>
+        <% else %>
+          <%= link_to 'Sign In', '#login_content', :id => 'sign_in_button' %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Register', '#register_content', :id => 'register_button' %>
+        <% end %>
+      </div>
+      <div class="clear"> </div>
+    </div>
+  </div>
+
+  <div id="main_container">
+    <div id="main">
+      <div class="hidden">
+        <div id="login_content">
+          <%= render "login/login" %>
+        </div>
+        <div id="register_content">
+          <%= render "login/register" %>
+        </div>
+      </div>
+
+      <% if flash[:message] != nil %>
+        <% for message in flash[:message] %>
+          <div class="message"><%= message %><%= image_tag "close.png", :class => "hover_link flash_close" %><div class="clear"> </div></div>
+        <% end %>
+      <% end %>
+
+      <% if flash[:error] != nil %>
+        <% for error in flash[:error] %>
+          <div class="error"><%= error %><%= image_tag "close.png", :class => "hover_link flash_close" %><div class="clear"> </div></div>
+        <% end %>
+      <% end %>
+
+      <%= yield %>
+    </div>
+  </div>
 
 </body>
 </html>

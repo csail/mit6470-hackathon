@@ -44,7 +44,7 @@ class LoginController < ApplicationController
 
     # redirect to the home page
     show_message("Welcome back, "+user.name+"!", true)
-    return redirect_to session[:last_params]
+    return redirect_to :back
   end
   
   def submit_logout
@@ -53,14 +53,14 @@ class LoginController < ApplicationController
 
     # redirect to the home page
     show_message("You are now logged out.", true)
-    return redirect_to session[:last_params]
+    return redirect_to :back
   end
   
   def edit_email
     # validate the input
     if params[:email] == nil || params[:email].try(:empty?)
       show_error("Your email address cannot be empty.", true)
-      return redirect_to session[:last_params]
+      return redirect_to :back
     end
 
     # edit the field and store it
@@ -69,14 +69,14 @@ class LoginController < ApplicationController
 
     # redirect to the home page
     show_message("Your email address has been updated.", true)
-    return redirect_to session[:last_params]
+    return redirect_to :back
   end
   
   def edit_name
     # validate the input
     if params[:name] == nil || params[:name].try(:empty?)
-      show_error("Your display name cannot be empty.", true)
-      return redirect_to session[:last_params]
+      show_error("Your name cannot be empty.", true)
+      return redirect_to :back
     end
 
     # edit the field and store it
@@ -84,8 +84,8 @@ class LoginController < ApplicationController
     @user.save!
 
     # redirect to the home page
-    show_message("Your display name has been updated.", true)
-    return redirect_to session[:last_params]
+    show_message("Your name has been updated.", true)
+    return redirect_to :back
   end
   
   def edit_region
@@ -96,7 +96,7 @@ class LoginController < ApplicationController
     end
     if get_city_name(params[:region]) == ""
       show_error("Invalid region.  Please enter a city name, zip code, or landmark to help us provide a location-aware learning experience.", true)
-      return redirect_to session[:last_params]
+      return redirect_to back
     end
 
     # edit the field and store it
@@ -105,27 +105,27 @@ class LoginController < ApplicationController
 
     # redirect to the home page
     show_message("Your region has been updated.", true)
-    return redirect_to session[:last_params]
+    return redirect_to back
   end
   
   def edit_password
     # validate the input
     if params[:password] == nil || params[:password].try(:empty?)
       show_error("Your password cannot be empty.", true)
-      return redirect_to session[:last_params]
+      return redirect_to back
     end
     if params[:password] != params[:repassword]
       show_error("Your passwords do not match.", true)
-      return redirect_to session[:last_params]
+      return redirect_to back
     end
 
     # edit the field and store it
-    @user.password = Digest::SHA512.hexdigest(params[:password])
+    @user.password = Digest::SHA512.hexdigest(@user.salt + params[:password])
     @user.save!
 
     # redirect to the home page
     show_message("Your password has been updated.", true)
-    return redirect_to session[:last_params]
+    return redirect_to back
   end
 
   def delete_account
@@ -187,15 +187,15 @@ class LoginController < ApplicationController
                     :name => params[:name],
                     :region => params[:region])
     user.salt = SecureRandom.base64(8)
-    user.password = Digest::SHA2.hexdigest(user.salt + params[:password])
+    user.password = Digest::SHA51User2.hexdigest(user.salt + params[:password])
     user.save!
     
     # log in as that user
     session[:current_user_id] = user.id
 
-    # redirect to the home page
+    # redirect to the home page`
     show_message("Thank you for signing up!", true)
-    return redirect_to session[:last_params]
+    return redirect_to :back
   end
 
   def user
@@ -203,7 +203,7 @@ class LoginController < ApplicationController
       @this_user = User.find(params[:user_id].to_i)
     rescue
       show_error("That user does not exist.", true)
-      return redirect_to session[:last_params]
+      return redirect_to :back
     end
     if @user
       @this_is_me = (@this_user.id == @user.id)

@@ -10,6 +10,18 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
+//= require lib/jquery-1.7.1.min
+//= require lib/jquery.easing-1.3.pack
+//= require lib/jquery.fancybox-1.3.4
+//= require lib/jquery.ba-bbq.min
+//= require lib/jquery.mousewheel-3.0.4.pack
+//= require lib/animatedcollapse
+//= require lib/video
+//= require lib/jquery-ui-1.8.17.min
+//= require lib/jquery.webcam
+//= require lib/slides.min
+//= require lib/jquery.tagsinput
+//= require lib/jquery.illuminate.0.7.min
+//
+//= require login
+//= require layout

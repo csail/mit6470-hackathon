@@ -24,7 +24,7 @@
 <div class="user_field_data">
   <%= @this_user.name %>
   <% if @this_is_me %>
-    <%= link_to image_tag("edit.png", :class => "user_field_edit"), "#edit_display_name_content", :id => "edit_display_name_link" %>
+    <%= link_to image_tag("edit.png", :class => "user_field_edit"), "#edit_name_content", :id => "edit_name_link" %>
   <% end %>
 </div>
 <div class="clear"> </div>
@@ -63,7 +63,7 @@
       <%= submit_tag "Submit" %>
     <% end %>
   </div>
-  <div id="edit_display_name_content">
+  <div id="edit_name_content">
     <%= form_tag("/edit_name", :method => "post", :id => "edit_name_form") do %>
       <h2>Edit Name</h2>
       <hr />

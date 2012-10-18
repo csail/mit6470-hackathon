@@ -1,8 +1,7 @@
-<h1>Listing users</h1>
+<h3>Listing users</h3>
  
 <table>
   <tr>
-    <th>email</th>
     <th>name</th>
     <th>region</th>
     <th></th>
@@ -12,13 +11,12 @@
  
 <% @users.each do |user| %>
   <tr>
-    <td><%= user.email %></td>
     <td><%= user.name %></td>
     <td><%= user.region %></td>
-    <td><%= link_to 'Show', user %></td>
+    <!--<td><%= link_to 'Show', user %></td>
     <td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?',
-                                     :method => :delete %></td>
+                                     :method => :delete %></td>-->
   </tr>
 <% end %>
 </table>
