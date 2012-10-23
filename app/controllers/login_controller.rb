@@ -187,7 +187,7 @@ class LoginController < ApplicationController
                     :name => params[:name],
                     :region => params[:region])
     user.salt = SecureRandom.base64(8)
-    user.password = Digest::SHA51User2.hexdigest(user.salt + params[:password])
+    user.password = Digest::SHA512.hexdigest(user.salt + params[:password])
     user.save!
     
     # log in as that user

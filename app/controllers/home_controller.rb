@@ -7,5 +7,5 @@ class HomeController < ApplicationController
     end
   end
 
-  autocomplete :users, :region
+  #autocomplete :users, :region
 end
