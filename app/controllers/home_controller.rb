@@ -6,4 +6,6 @@ class HomeController < ApplicationController
       format.json  { render :json => @users }
     end
   end
+
+  autocomplete :users, :region
 end

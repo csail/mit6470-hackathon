@@ -13,9 +13,8 @@ module TimeLib
   end
 
   def TimeLib.halfHourCeiling(date)
-    if date.minute.modulo(30) != 0
-
-    end
+    #DateTime.now.to_time.minute
+    return date + ((30-date.minute.modulo(30)).modulo(30)).hours # this probs works
   end
 
 end

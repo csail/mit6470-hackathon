@@ -1,5 +1,7 @@
 Jampatch::Application.routes.draw do
-  resources :users
+  resources :users do
+    get :autocomplete_users_region, :on => :collection
+  end
 
   root :to => 'home#index'
 
