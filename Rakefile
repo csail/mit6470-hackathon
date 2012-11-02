@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Minicontest::Application.load_tasks
+Minicontest-470::Application.load_tasks
