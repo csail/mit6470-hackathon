@@ -7,5 +7,12 @@ class HomeController < ApplicationController
     end
   end
 
-  #autocomplete :users, :region
+  def backdoor
+    @users = User.all
+    respond_to do |format|
+      format.html  # index.html.erb
+      format.json  { render :json => @users }
+    end
+  end
+
 end

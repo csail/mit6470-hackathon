@@ -125,7 +125,7 @@ class LoginController < ApplicationController
 
     # redirect to the home page
     show_message("Your password has been updated.", true)
-    return redirect_to back
+    return redirect_to :back
   end
 
   def delete_account

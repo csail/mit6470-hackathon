@@ -1,11 +1,5 @@
-Jampatch::Application.routes.draw do
-  resources :users do
-    get :autocomplete_users_region, :on => :collection
-  end
-
+Minicontest::Application.routes.draw do
   root :to => 'home#index'
-
-  get "/test" => 'home#test'
 
   get "/login" => "login#index"
   get "/register" => "login#register"
