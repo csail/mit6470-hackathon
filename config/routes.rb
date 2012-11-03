@@ -1,4 +1,4 @@
-Minicontest-470::Application.routes.draw do
+Minicontest::Application.routes.draw do
   root :to => 'home#index'
 
   get "/login" => "login#index"
