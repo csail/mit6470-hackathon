@@ -1,24 +1,35 @@
-<h3>Listing users</h3>
+<%= @user.name %>
+
+<% @problems.each do |prob| %>
+  <%= prob.name %>
+  <% solns = prob.solutions.where(:user_id => @user.id) %>
+  <% if solns.length == 0 %>
+    No solutions submitted
+  <% else %>
+    <% solns.each do |soln| %>
+      <%= soln.submission %>
+    <% end %>
+  <% end %>
+<% end %>
  
+<!--
 <table>
   <tr>
     <th>name</th>
-    <th>region</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>submissions</th>
   </tr>
  
 <% @users.each do |user| %>
   <tr>
     <td><%= user.name %></td>
-    <td><%= user.region %></td>
-    <!--<td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?',
-                                     :method => :delete %></td>-->
+    <td><%= user.solutions %></td>
+    <td><%#= link_to 'Show', user %></td>
+    <td><%#= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%#= link_to 'Destroy', user, :confirm => 'Are you sure?',
+                                     :method => :delete %></td>
   </tr>
 <% end %>
 </table>
+-->
  
 <br />
