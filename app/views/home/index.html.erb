@@ -1,35 +1,27 @@
-<%= @user.name %>
+<%= stylesheet_link_tag    "home", :media => "all" %>
 
-<% @problems.each do |prob| %>
-  <%= prob.name %>
-  <% solns = prob.solutions.where(:user_id => @user.id) %>
-  <% if solns.length == 0 %>
-    No solutions submitted
-  <% else %>
-    <% solns.each do |soln| %>
-      <%= soln.submission %>
+<h2>Submitted solutions</h2>
+
+<% @categories.each do |x| %>
+<div class="category">
+
+  <h3><%= x['category'] %></h3>
+
+  <% x['problems'].each do |prob| %>
+  <div class="problem">
+    <div class="problem-header"><%= prob.name %></div>
+    <% solns = prob.solutions.where(:user_id => @user.id).order('created_at DESC') %>
+    <% if solns.length == 0 %>
+      No solutions submitted
+    <% else %>
+      <% solns.each do |soln| %>
+      <div class="solution">
+        <%=soln.created_at %> - <%= soln.submission %>
+      </div>
+      <% end %>
     <% end %>
+  </div>
   <% end %>
+
+</div>
 <% end %>
- 
-<!--
-<table>
-  <tr>
-    <th>name</th>
-    <th>submissions</th>
-  </tr>
- 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.name %></td>
-    <td><%= user.solutions %></td>
-    <td><%#= link_to 'Show', user %></td>
-    <td><%#= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%#= link_to 'Destroy', user, :confirm => 'Are you sure?',
-                                     :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
--->
- 
-<br />

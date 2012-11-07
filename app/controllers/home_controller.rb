@@ -2,8 +2,11 @@ class HomeController < ApplicationController
   def index
     @user = User.where(:id => session[:current_user_id]).first
     @users = User.all
-    @problems = Problem.all
-    #@solutions = Solution.all.where(:user_id => session[:current_user_id])
+    @categories = [
+      {'category'=>'CSS', 'problems'=>Problem.where(:category=>"css")},
+      {'category'=>'Javascript', 'problems'=>Problem.where(:category=>"js")},
+      {'category'=>'SQL', 'problems'=>Problem.where(:category=>"sql")}
+    ]
     respond_to do |format|
       format.html  # index.html.erb
       format.json  { render :json => @users }

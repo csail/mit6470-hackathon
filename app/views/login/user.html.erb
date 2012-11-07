@@ -29,15 +29,6 @@
 </div>
 <div class="clear"> </div>
 
-<div class="user_field_label">Region</div>
-<div class="user_field_data">
-  <%= ac.get_city_name @this_user.region %>
-  <% if @this_is_me %>
-    <%= link_to image_tag("edit.png", :class => "user_field_edit"), "#edit_region_content", :id => "edit_region_link" %>
-  <% end %>
-</div>
-<div class="clear"> </div>
-
 <% if @this_is_me %>
   <div class="user_field_label">Password</div>
   <div class="user_field_data"><span class="password">&lt;hidden&gt;</span><%= link_to image_tag("edit.png", :class => "user_field_edit"), "#edit_password_content", :id => "edit_password_link" %></div>
@@ -69,16 +60,6 @@
       <hr />
       <%= label_tag :name, "Name" %>
       <%= text_field_tag :name, @this_user.name %>
-      <div class="clear"> </div>
-      <%= submit_tag "Submit" %>
-    <% end %>
-  </div>
-  <div id="edit_region_content">
-    <%= form_tag("/edit_region", :method => "post", :id => "edit_region_form") do %>
-      <h2>Edit Region</h2>
-      <hr />
-      <%= label_tag :region, "Region" %>
-      <%= text_field_tag :region, @this_user.region %>
       <div class="clear"> </div>
       <%= submit_tag "Submit" %>
     <% end %>
