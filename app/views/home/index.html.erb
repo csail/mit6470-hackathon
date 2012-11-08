@@ -1,22 +1,27 @@
 <%= stylesheet_link_tag    "home", :media => "all" %>
 
-<h2>Submitted solutions</h2>
-
 <% @categories.each do |x| %>
 <div class="category">
 
-  <h3><%= x['category'] %></h3>
+  <h2><%= x['category'] %></h2>
 
   <% x['problems'].each do |prob| %>
   <div class="problem">
-    <div class="problem-header"><%= prob.name %></div>
+    <div class="problem-header">
+      <a href="/problems/<%= prob.id %>">
+        <%= prob.name %>
+      </a>
+    </div>
     <% solns = prob.solutions.where(:user_id => @user.id).order('created_at DESC') %>
     <% if solns.length == 0 %>
       No solutions submitted
     <% else %>
       <% solns.each do |soln| %>
       <div class="solution">
-        <%=soln.created_at %> - <%= soln.submission %>
+        <%=soln.created_at %>
+        <div class="solution-body">
+          <%= soln.submission %>
+        </div>
       </div>
       <% end %>
     <% end %>
