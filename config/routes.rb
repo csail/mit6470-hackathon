@@ -14,4 +14,5 @@ Minicontest::Application.routes.draw do
   post "/edit_password" => "login#edit_password"
 
   get "/problems/:problem_id" => "problems#single"
+  post "/submit_solution" => "problems#submit_solution"
 end

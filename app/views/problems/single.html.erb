@@ -1,6 +1,14 @@
 <h3><%= @problem.name %> (<%= @problem.category %>)</h3>
 
 <div>Problem statement:</div>
-<div>
+<div class="description">
   <%= @problem.description %>
 </div>
+
+<%= form_tag("/submit_solution", :method => "post", :id => "solution_form") do %>
+  <%= hidden_field_tag :problem_id, @problem.id %>
+  <p>Solution</p>
+  <%= text_area_tag :solution, "" %>
+  <div class="clear"> </div>
+  <%= submit_tag "Submit" %>
+<% end %>
