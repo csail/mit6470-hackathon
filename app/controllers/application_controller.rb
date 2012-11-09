@@ -13,37 +13,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # look up a city name by region
-  def get_city_name(address)
-    begin
-      sock = TCPSocket.open("maps.googleapis.com", 80)
-      sock.print("GET /maps/api/geocode/json?address=#{CGI::escape(address)}&sensor=false HTTP/1.0\r\n\r\n")
-      response = sock.read
-      response = response[response.index("\r\n\r\n")+4, response.length]
-      first_result = JSON.parse(response)["results"][0]
-      for component in first_result["address_components"]
-        if component["types"].index("locality") != nil
-          return component["long_name"]
-        end
-      end
-    rescue
-    end
-    return ""
-  end
-
-  # get the distance between two regions in meters
-  def get_distance(address1, address2)
-    begin
-      sock = TCPSocket.open("maps.googleapis.com", 80)
-      sock.print("GET /maps/api/distancematrix/json?origins=#{CGI::escape(address1)}&destinations=#{CGI::escape(address2)}&mode=driving&sensor=false HTTP/1.0\r\n\r\n")
-      response = sock.read
-      response = response[response.index("\r\n\r\n")+4, response.length]
-      return JSON.parse(response)["rows"][0]["elements"][0]["distance"]["value"].to_i
-    rescue
-    end
-    return 0
-  end
-
   # show a message
   def show_message(str, redirect=false)
     if redirect
@@ -99,24 +68,9 @@ class ApplicationController < ActionController::Base
     # if there is no stored route, just store the home page
     session[:last_params] ||= { :last_controller => "home", :last_action => "index" }
 
-    # make sure we're on an actual non-login/registration page
-    #return if params[:controller] == "login" && params[:action] == "index"
-    #return if params[:controller] == "login" && params[:action] == "register"
-    #return if params[:controller] == "login" && params[:action] == "register"
-    #return if params[:controller] == "dict" && params[:action] == "upload"
-    #return if params[:controller] == "dict" && params[:action] == "done_uploading"
-    #return if params[:controller] == "quiz" && params[:action] == "newword"
-    #return if params[:controller] == "quiz" && params[:action] == "learn"
-    #return if params[:controller] == "quiz" && params[:action] == "json"
-    #return if params[:controller] == "quiz" && params[:action] == "quiz"
-    #return if params[:controller] == "quiz" && params[:action] == "play"
-    #return if params[:controller] == "quiz" && params[:action] == "submit_score"
-    #return if !request.get?
-
     # clear the autocomplete stuff for the login/registration forms
     session[:autocomplete_email] = ""
     session[:autocomplete_name] = ""
-    session[:autocomplete_region] = ""
 
     # store the route
     session[:last_params] = params

@@ -12,7 +12,6 @@ class LoginController < ApplicationController
     # make sure these values exist
     session[:autocomplete_email] ||= ""
     session[:autocomplete_name] ||= ""
-    session[:autocomplete_region] ||= ""
   end
   
   def submit_login
@@ -87,27 +86,7 @@ class LoginController < ApplicationController
     show_message("Your name has been updated.", true)
     return redirect_to :back
   end
-  
-  def edit_region
-    # validate the input
-    if params[:region] == nil || params[:region].try(:empty?)
-      show_error("Your region cannot be empty.", true)
-      return redirect_to :action => "account"
-    end
-    if get_city_name(params[:region]) == ""
-      show_error("Invalid region.  Please enter a city name, zip code, or landmark to help us provide a location-aware learning experience.", true)
-      return redirect_to back
-    end
 
-    # edit the field and store it
-    @user.region = params[:region]
-    @user.save!
-
-    # redirect to the home page
-    show_message("Your region has been updated.", true)
-    return redirect_to back
-  end
-  
   def edit_password
     # validate the input
     if params[:password] == nil || params[:password].try(:empty?)
@@ -142,7 +121,6 @@ class LoginController < ApplicationController
     # store the form data in case the user needs to fill it out again
     session[:autocomplete_email] = params[:email]
     session[:autocomplete_name] = params[:name]
-    session[:autocomplete_region] = params[:region]
 
     # make sure all of the fields are filled out
     if params[:email] == nil || params[:email].try(:empty?)
@@ -161,14 +139,6 @@ class LoginController < ApplicationController
       show_error("Please re-type your password.", true)
       return redirect_to :action => "register"
     end
-    if params[:region] == nil || params[:region].try(:empty?)
-      show_error("Please provide your region.", true)
-      return redirect_to :action => "register"
-    end
-    if get_city_name(params[:region]) == ""
-      show_error("Invalid region.  Please enter a city name, zip code, or landmark to help us provide a location-aware learning experience.", true)
-      return redirect_to :action => "register"
-    end
 
     # check if a user with that email address exists
     if User.where(:email => params[:email]).exists?
@@ -184,8 +154,7 @@ class LoginController < ApplicationController
 
     # create the user
     user = User.new(:email => params[:email],
-                    :name => params[:name],
-                    :region => params[:region])
+                    :name => params[:name])
     user.salt = SecureRandom.base64(8)
     user.password = Digest::SHA512.hexdigest(user.salt + params[:password])
     user.save!

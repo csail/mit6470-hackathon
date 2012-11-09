@@ -13,11 +13,6 @@ $(document).ready(() ->
     $("div#edit_name_content form#edit_name_form input#name").focus()
   } )
 
-  # region editing stuff
-  $("div#main_container div#main a#edit_region_link").fancybox( { onComplete: () ->
-    $("div#edit_region_content form#edit_region_form input#region").focus()
-  } )
-
   # password editing stuff
   $("div#main_container div#main a#edit_password_link").fancybox( { onComplete: () ->
     $("div#edit_password_content form#edit_password_form input#password").focus()
