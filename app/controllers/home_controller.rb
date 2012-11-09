@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  before_filter :require_login, :only => [:index]
+
   def index
     @user = User.where(:id => session[:current_user_id]).first
     @users = User.all

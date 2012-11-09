@@ -1,4 +1,6 @@
 class ProblemsController < ApplicationController
+  before_filter :require_login, :only => [:submit_solution]
+
 
   def index
   end
