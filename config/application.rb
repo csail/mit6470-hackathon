@@ -58,7 +58,7 @@ module Minicontest
 
     config.sass.preferred_syntax = :sass
 
-    config.assets.precompile = ['*.js', '*.css']
+    config.assets.precompile = ['*.js', '*.css', '*.png']
 
   end
 end
