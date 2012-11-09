@@ -1,0 +1,216 @@
+/* line 1, ../../app/assets/stylesheets/community.sass */
+h2#community_header {
+  display: block;
+  width: 660px;
+  float: left;
+  margin-bottom: 0px;
+}
+
+/* line 7, ../../app/assets/stylesheets/community.sass */
+div#sign_up_for_questioning {
+  width: 300px;
+  float: left;
+  margin-top: 24px;
+  text-align: right;
+}
+
+/* line 13, ../../app/assets/stylesheets/community.sass */
+form#new_discussion_link_form {
+  width: 300px;
+  float: left;
+  padding: 0px;
+  margin-top: 14px;
+}
+
+/* line 19, ../../app/assets/stylesheets/community.sass */
+form#new_discussion_link_form input {
+  width: 200px;
+  margin: 0px;
+  margin-left: 100px;
+}
+
+/* line 24, ../../app/assets/stylesheets/community.sass */
+div#discussions_container {
+  width: 980px;
+  margin-right: -20px;
+}
+
+/* line 28, ../../app/assets/stylesheets/community.sass */
+div#discussions_container div.discussion {
+  position: relative;
+  width: 264px;
+  float: left;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  padding: 20px;
+  background: #eeeeee url("/assets/textures/diagonal_noise.png") repeat right top;
+  -moz-box-shadow: 0px 1px 3px #dddddd;
+  -webkit-box-shadow: 0px 1px 3px #dddddd;
+  box-shadow: 0px 1px 3px #dddddd;
+  border: 1px solid #cccccc;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  color: #666666;
+}
+
+/* line 45, ../../app/assets/stylesheets/community.sass */
+div#discussions_container div.discussion a:hover {
+  color: #9e2020;
+}
+
+/* line 48, ../../app/assets/stylesheets/community.sass */
+div#discussions_container div.discussion:hover {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2');
+  background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f2f2f2));
+  background: -moz-linear-gradient(top, #f9f9f9, #f2f2f2);
+  color: #333333;
+}
+
+/* line 54, ../../app/assets/stylesheets/community.sass */
+div#discussions_container div.discussion div.discussion_title {
+  font-size: 1.3em;
+}
+
+/* line 57, ../../app/assets/stylesheets/community.sass */
+div#new_discussion_content label {
+  width: 80px;
+}
+
+/* line 60, ../../app/assets/stylesheets/community.sass */
+div#new_discussion_content input {
+  width: 400px;
+}
+
+/* line 63, ../../app/assets/stylesheets/community.sass */
+div#new_discussion_content textarea {
+  width: 400px;
+  height: 100px;
+}
+
+/* line 67, ../../app/assets/stylesheets/community.sass */
+div#new_discussion_content input[type=submit] {
+  width: 100px;
+  margin-left: 100px;
+}
+
+/* line 71, ../../app/assets/stylesheets/community.sass */
+h2#discussion_header {
+  display: block;
+  width: 660px;
+  float: left;
+  margin-bottom: 0px;
+}
+
+/* line 77, ../../app/assets/stylesheets/community.sass */
+form#back_to_questions_form {
+  width: 300px;
+  float: left;
+  padding: 0px;
+  margin-top: 14px;
+}
+
+/* line 83, ../../app/assets/stylesheets/community.sass */
+form#back_to_questions_form input {
+  width: 200px;
+  margin: 0px;
+  margin-left: 100px;
+}
+
+/* line 88, ../../app/assets/stylesheets/community.sass */
+form#reply_form {
+  padding: 0px;
+}
+
+/* line 91, ../../app/assets/stylesheets/community.sass */
+form#reply_form textarea {
+  width: 708px;
+  height: 100px;
+  margin-left: 0px;
+}
+
+/* line 96, ../../app/assets/stylesheets/community.sass */
+form#reply_form input[type=submit] {
+  margin-left: 0px;
+}
+
+/* line 99, ../../app/assets/stylesheets/community.sass */
+div.post_container {
+  width: 960px;
+  margin-bottom: 20px;
+}
+
+/* line 103, ../../app/assets/stylesheets/community.sass */
+div.post_container div.post_metadata {
+  width: 198px;
+  float: left;
+  margin-right: 20px;
+  padding: 10px;
+  background: #eeeeee url("/assets/textures/diagonal_noise.png") repeat right top;
+  -moz-box-shadow: 0px 1px 3px #dddddd;
+  -webkit-box-shadow: 0px 1px 3px #dddddd;
+  box-shadow: 0px 1px 3px #dddddd;
+  border: 1px solid #cccccc;
+  font-weight: bold;
+  color: #666666;
+}
+
+/* line 116, ../../app/assets/stylesheets/community.sass */
+div.post_container div.post_metadata h4 {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
+/* line 120, ../../app/assets/stylesheets/community.sass */
+div.post_container div.post_content {
+  width: 698px;
+  float: left;
+  background-color: #eeeeee;
+  padding: 10px;
+  -moz-box-shadow: 0px 1px 3px #dddddd;
+  -webkit-box-shadow: 0px 1px 3px #dddddd;
+  box-shadow: 0px 1px 3px #dddddd;
+  border: 1px solid #dddddd;
+  font-weight: bold;
+  color: #666666;
+}
+
+/* line 132, ../../app/assets/stylesheets/community.sass */
+div.post_container div.reply_content {
+  width: 720px;
+  float: left;
+}
+
+/* line 136, ../../app/assets/stylesheets/community.sass */
+hr#reply_hr {
+  margin-top: 0px;
+  margin-bottom: 19px;
+}
+
+/* line 140, ../../app/assets/stylesheets/community.sass */
+div#discussions_container div.discussion img.discussion_close {
+  display: block;
+  position: absolute;
+  left: 289px;
+  top: -14px;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+}
+
+/* line 149, ../../app/assets/stylesheets/community.sass */
+div#discussions_container div.discussion:hover img.discussion_close {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+
+/* line 153, ../../app/assets/stylesheets/community.sass */
+div#discussions_container div.discussion img.discussion_close:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+/* line 157, ../../app/assets/stylesheets/community.sass */
+span#discussion_name {
+  font-weight: bold;
+}

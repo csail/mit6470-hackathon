@@ -1,0 +1,19 @@
+/** style mixins ** */
+/** dom ** */
+/* line 14, ../../app/assets/stylesheets/home.sass */
+.problem {
+  margin-bottom: 1.5em;
+}
+/* line 16, ../../app/assets/stylesheets/home.sass */
+.problem .problem-header {
+  margin-bottom: 0.5em;
+  font-weight: bold;
+}
+
+/* line 20, ../../app/assets/stylesheets/home.sass */
+.solution-body {
+  width: 400px;
+  background: #eeeeee;
+  padding: 8px;
+  margin: 5px 0 8px 0;
+}
