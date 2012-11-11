@@ -1,5 +1,10 @@
 <%= stylesheet_link_tag    "home", :media => "all" %>
 
+
+<% if @user.admin %>
+  <a href="/create_problem">create a new problem</a>
+<% end %>
+
 <% @categories.each do |x| %>
 <div class="category">
 
