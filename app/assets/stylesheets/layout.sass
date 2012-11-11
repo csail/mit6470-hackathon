@@ -37,59 +37,69 @@ a
 span.light
   color: #666
 
-form
+button
+  display: block
+  float: left
+  margin-left: 20px
+  margin-bottom: 10px
+  width: 200px
+  padding: 5px
+  border: 1px solid #ccc
+  +inset-box-shadow(0, 0, 5px, 0, #ccc)
+  color: #444
+
+form.popup
   display: block
   padding: 10px
 
-form label
-  display: block
-  float: left
-  width: 80px
-  padding-top: 6px
-  text-align: right
-  float: left
+  label
+    display: block
+    float: left
+  //  width: 80px
+  //  padding-top: 6px
+    text-align: right
+    float: left
 
-form input, form button, button
-  display: block
-  float: left
-  margin-left: 20px
-  margin-bottom: 10px
-  width: 200px
-  padding: 5px
-  border: 1px solid #ccc
-  +inset-box-shadow(0, 0, 5px, 0, #ccc)
+  input
+    display: block
+    float: left
+    margin-left: 20px
+    margin-bottom: 10px
+    width: 200px
+    padding: 5px
+    border: 1px solid #ccc
+    +inset-box-shadow(0, 0, 5px, 0, #ccc)
+    color: #444
 
-  color: #444
+  textarea
+    display: block
+    float: left
+    margin-left: 20px
+    margin-bottom: 10px
+    width: 200px
+    height: 70px
+    padding: 5px
+    border: 1px solid #ccc
+    +inset-box-shadow(0, 0, 5px, 0, #ccc)
+    color: #444
+    resize: none
 
-form textarea
-  display: block
-  float: left
-  margin-left: 20px
-  margin-bottom: 10px
-  width: 200px
-  height: 70px
-  padding: 5px
-  border: 1px solid #ccc
-  +inset-box-shadow(0, 0, 5px, 0, #ccc)
-  color: #444
-  resize: none
+  input[type=submit]
+    display: block
+    float: none
+    margin-left: 100px
+    width: 100px
+    padding: 5px
+    color: #444
+    background: #eeeeee url('/assets/textures/diagonal_noise.png') repeat right top
+    +box-shadow(0, 1px, 3px, 0, #ddd)
+    border: 1px solid #ccc
+    text-shadow: 1px 1px 0px #fff
 
-form input[type=submit]
-  display: block
-  float: none
-  margin-left: 100px
-  width: 100px
-  padding: 5px
-  color: #444
-  background: #eeeeee url('/assets/textures/diagonal_noise.png') repeat right top
-  +box-shadow(0, 1px, 3px, 0, #ddd)
-  border: 1px solid #ccc
-  text-shadow: 1px 1px 0px #fff
-
-form input[type=submit]:hover
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2')
-  background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f2f2f2))
-  background: -moz-linear-gradient(top,  #f9f9f9,  #f2f2f2)
+  input[type=submit]:hover
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2')
+    background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f2f2f2))
+    background: -moz-linear-gradient(top,  #f9f9f9,  #f2f2f2)
 
 form.confirmation_form
   text-align: center

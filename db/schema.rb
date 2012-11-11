@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105030749) do
+ActiveRecord::Schema.define(:version => 20121110064328) do
 
   create_table "problems", :force => true do |t|
     t.string   "category"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20121105030749) do
     t.datetime "updated_at", :null => false
     t.text     "password"
     t.text     "salt"
+    t.boolean  "admin"
   end
 
 end

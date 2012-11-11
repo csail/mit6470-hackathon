@@ -1,2 +1,15 @@
 // utils for the tagging questions
-function getCheckedIds(){return $.map($(".question input:checked"),function(e){return parseInt($(e).attr("id"))})}function checkTags(e){$(".choices input").each(function(e){this.checked=!1});for(i in e)$(".choices input#"+e[i]).each(function(e){this.checked=!0})};
+
+function getCheckedIds() {
+  return $.map( $('.question input:checked'), function(element) {
+    return parseInt( $(element).attr('id') );
+  });
+}
+
+function checkTags(ids) {
+  $('.choices input').each( function(index) { this.checked = false; });
+  for (i in ids) {
+    $('.choices input#'+ids[i]).each( function(index) { this.checked = true; });
+  }
+}
+;

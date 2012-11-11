@@ -9,4 +9,86 @@
 *
 * @see http://www.xarg.org/project/jquery-webcam-plugin/
 **/
-(function(e){var t={extern:null,append:!0,width:320,height:240,mode:"callback",swffile:"jscam.swf",quality:85,debug:function(){},onCapture:function(){},onTick:function(){},onSave:function(){},onLoad:function(){}};window.webcam=t,e.fn.webcam=function(n){if(typeof n=="object")for(var r in t)n[r]!==undefined&&(t[r]=n[r]);var i='<object id="XwebcamXobjectX" type="application/x-shockwave-flash" data="'+t.swffile+'" width="'+t.width+'" height="'+t.height+'"><param name="movie" value="'+t.swffile+'" /><param name="FlashVars" value="mode='+t.mode+"&amp;quality="+t.quality+'" /><param name="allowScriptAccess" value="always" /></object>';null!==t.extern?e(t.extern)[t.append?"append":"html"](i):this[t.append?"append":"html"](i),(_register=function(e){var n=document.getElementById("XwebcamXobjectX");n.capture!==undefined?(t.capture=function(e){try{return n.capture(e)}catch(t){}},t.save=function(e){try{return n.save(e)}catch(t){}},t.setCamera=function(e){try{return n.setCamera(e)}catch(t){}},t.getCameraList=function(){try{return n.getCameraList()}catch(e){}},t.onLoad()):0==e?t.debug("error","Flash movie not yet registered!"):window.setTimeout(_register,1e3*(4-e),e-1)})(3)}})(jQuery);
+
+
+(function ($) {
+
+    var webcam = {
+
+	extern: null, // external select token to support jQuery dialogs
+	append: true, // append object instead of overwriting
+
+	width: 320,
+	height: 240,
+
+	mode: "callback", // callback | save | stream
+
+	swffile: "jscam.swf",
+	quality: 85,
+
+	debug:	    function () {},
+	onCapture:  function () {},
+	onTick:	    function () {},
+	onSave:	    function () {},
+	onLoad:	    function () {}
+    };
+
+    window.webcam = webcam;
+
+    $.fn.webcam = function(options) {
+
+	if (typeof options === "object") {
+	    for (var ndx in webcam) {
+		if (options[ndx] !== undefined) {
+		    webcam[ndx] = options[ndx];
+		}
+	    }
+	}
+
+	var source = '<object id="XwebcamXobjectX" type="application/x-shockwave-flash" data="'+webcam.swffile+'" width="'+webcam.width+'" height="'+webcam.height+'"><param name="movie" value="'+webcam.swffile+'" /><param name="FlashVars" value="mode='+webcam.mode+'&amp;quality='+webcam.quality+'" /><param name="allowScriptAccess" value="always" /></object>';
+
+	if (null !== webcam.extern) {
+	    $(webcam.extern)[webcam.append ? "append" : "html"](source);
+	} else {
+	    this[webcam.append ? "append" : "html"](source);
+	}
+
+	(_register = function(run) {
+
+	    var cam = document.getElementById('XwebcamXobjectX');
+
+	    if (cam.capture !== undefined) {
+
+		/* Simple callback methods are not allowed :-/ */
+		webcam.capture = function(x) {
+		    try {
+			return cam.capture(x);
+		    } catch(e) {}
+		}
+		webcam.save = function(x) {
+		    try {
+			return cam.save(x);
+		    } catch(e) {}
+		}
+		webcam.setCamera = function(x) {
+		    try {
+			return cam.setCamera(x);
+		    } catch(e) {}
+		}
+		webcam.getCameraList = function() {
+		    try {
+			return cam.getCameraList();
+		    } catch(e) {}
+		}
+
+		webcam.onLoad();
+	    } else if (0 == run) {
+		webcam.debug("error", "Flash movie not yet registered!");
+	    } else {
+		/* Flash interface not ready yet */
+		window.setTimeout(_register, 1000 * (4 - run), run - 1);
+	    }
+	})(3);
+    }
+
+})(jQuery);

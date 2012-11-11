@@ -13,6 +13,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # require admin privileges
+  def require_admin
+    if !@user or !(@user.admin)
+      flash.keep
+      return redirect_to :back
+    end
+  end
+
   # show a message
   def show_message(str, redirect=false)
     if redirect

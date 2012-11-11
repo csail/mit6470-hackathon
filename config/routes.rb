@@ -15,4 +15,7 @@ Minicontest::Application.routes.draw do
 
   get "/problems/:problem_id" => "problems#single"
   post "/submit_solution" => "problems#submit_solution"
+
+  get "/create_problem" => "problems#create"
+  post "/submit_problem" => "problems#submit_problem"
 end

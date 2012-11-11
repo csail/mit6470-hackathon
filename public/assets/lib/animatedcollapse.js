@@ -2,10 +2,223 @@
 //** May 24th, 08'- Script rewritten and updated to 2.0.
 //** June 4th, 08'- Version 2.01: Bug fix to work with jquery 1.2.6 (which changed the way attr() behaves).
 //** March 5th, 09'- Version 2.2, which adds the following:
-//1) ontoggle($, divobj, state) event that fires each time a DIV is expanded/collapsed, including when the page 1st loads
-//2) Ability to expand a DIV via a URL parameter string, ie: index.htm?expanddiv=jason or index.htm?expanddiv=jason,kelly
+			//1) ontoggle($, divobj, state) event that fires each time a DIV is expanded/collapsed, including when the page 1st loads
+			//2) Ability to expand a DIV via a URL parameter string, ie: index.htm?expanddiv=jason or index.htm?expanddiv=jason,kelly
+
 //** March 9th, 09'- Version 2.2.1: Optimized ontoggle event handler slightly.
 //** July 3rd, 09'- Version 2.4, which adds the following:
-//1) You can now insert rel="expand[divid] | collapse[divid] | toggle[divid]" inside arbitrary links to act as DIV togglers
-//2) For image toggler links, you can insert the attributes "data-openimage" and "data-closedimage" to update its image based on the DIV state
-var animatedcollapse={divholders:{},divgroups:{},lastactiveingroup:{},preloadimages:[],show:function(e){if(typeof e=="object")for(var t=0;t<e.length;t++)this.showhide(e[t],"show");else this.showhide(e,"show")},hide:function(e){if(typeof e=="object")for(var t=0;t<e.length;t++)this.showhide(e[t],"hide");else this.showhide(e,"hide")},toggle:function(e){typeof e=="object"&&(e=e[0]),this.showhide(e,"toggle")},addDiv:function(e,t){return this.divholders[e]={id:e,$divref:null,attrs:t},this.divholders[e].getAttr=function(e){var t=new RegExp(e+"=([^,]+)","i");return t.test(this.attrs)&&parseInt(RegExp.$1)!=0?RegExp.$1:null},this.currentid=e,this},showhide:function(e,t){var n=this.divholders[e].$divref;if(this.divholders[e]&&n.length==1){var r=this.divgroups[n.attr("groupname")];n.attr("groupname")&&r.count>1&&(t=="show"||t=="toggle"&&n.css("display")=="none")?(r.lastactivedivid&&r.lastactivedivid!=e&&this.slideengine(r.lastactivedivid,"hide"),this.slideengine(e,"show"),r.lastactivedivid=e):this.slideengine(e,t)}},slideengine:function(e,t){var n=this.divholders[e].$divref,r=this.divholders[e].$togglerimage;if(this.divholders[e]&&n.length==1){var i={height:t};return n.attr("fade")&&(i.opacity=t),n.animate(i,n.attr("speed")?parseInt(n.attr("speed")):500,function(){r&&r.attr("src",n.css("display")=="none"?r.data("srcs").closed:r.data("srcs").open);if(animatedcollapse.ontoggle)try{animatedcollapse.ontoggle(jQuery,n.get(0),n.css("display"))}catch(e){alert('An error exists inside your "ontoggle" function:\n\n'+e+"\n\nAborting execution of function.")}}),!1}},generatemap:function(){var e={};for(var t=0;t<arguments.length;t++)arguments[t][1]!=null&&(e[arguments[t][0]]=arguments[t][1]);return e},init:function(){var e=this;jQuery(document).ready(function(t){animatedcollapse.ontoggle=animatedcollapse.ontoggle||null;var n=animatedcollapse.urlparamselect(),r=e.getCookie("acopendivids"),i=e.getCookie("acgroupswithpersist");r!=null&&(r=r=="nada"?[]:r.split(",")),i=i==null||i=="nada"?[]:i.split(","),jQuery.each(e.divholders,function(){this.$divref=t("#"+this.id);if(!this.getAttr("persist")&&jQuery.inArray(this.getAttr("group"),i)==-1||r==null)var s=this.getAttr("hide")?"none":null;else var s=jQuery.inArray(this.id,r)!=-1?"block":"none";n[0]=="all"||jQuery.inArray(this.id,n)!=-1?s="block":n[0]=="none"&&(s="none"),this.$divref.css(e.generatemap(["height",this.getAttr("height")],["display",s])),this.$divref.attr(e.generatemap(["groupname",this.getAttr("group")],["fade",this.getAttr("fade")],["speed",this.getAttr("speed")]));if(this.getAttr("group")){var o=e.divgroups[this.getAttr("group")]||(e.divgroups[this.getAttr("group")]={});o.count=(o.count||0)+1,jQuery.inArray(this.id,n)!=-1&&(o.lastactivedivid=this.id,o.overridepersist=1);if(!o.lastactivedivid&&this.$divref.css("display")!="none"||s=="block"&&typeof o.overridepersist=="undefined")o.lastactivedivid=this.id;this.$divref.css({display:"none"})}}),jQuery.each(e.divgroups,function(){this.lastactivedivid&&n[0]!="none"&&e.divholders[this.lastactivedivid].$divref.show()}),animatedcollapse.ontoggle&&jQuery.each(e.divholders,function(){animatedcollapse.ontoggle(jQuery,this.$divref.get(0),this.$divref.css("display"))});var s=t("a[rel]").filter('[rel^="collapse["], [rel^="expand["], [rel^="toggle["]');s.each(function(){this._divids=this.getAttribute("rel").replace(/(^\w+)|(\s+)/g,"").replace(/[\[\]']/g,""),this.getElementsByTagName("img").length==1&&e.divholders[this._divids]&&(animatedcollapse.preloadimage(this.getAttribute("data-openimage"),this.getAttribute("data-closedimage")),$togglerimage=t(this).find("img").eq(0).data("srcs",{open:this.getAttribute("data-openimage"),closed:this.getAttribute("data-closedimage")}),e.divholders[this._divids].$togglerimage=t(this).find("img").eq(0),e.divholders[this._divids].$togglerimage.attr("src",e.divholders[this._divids].$divref.css("display")=="none"?$togglerimage.data("srcs").closed:$togglerimage.data("srcs").open)),t(this).click(function(){var e=this.getAttribute("rel"),t=this._divids==""?[]:this._divids.split(",");if(t.length>0)return animatedcollapse[/expand/i.test(e)?"show":/collapse/i.test(e)?"hide":"toggle"](t),!1})}),t(window).bind("unload",function(){e.uninit()})})},uninit:function(){var e="",t="";jQuery.each(this.divholders,function(){this.$divref.css("display")!="none"&&(e+=this.id+","),this.getAttr("group")&&this.getAttr("persist")&&(t+=this.getAttr("group")+",")}),e=e==""?"nada":e.replace(/,$/,""),t=t==""?"nada":t.replace(/,$/,""),this.setCookie("acopendivids",e),this.setCookie("acgroupswithpersist",t)},getCookie:function(e){var t=new RegExp(e+"=[^;]*","i");return document.cookie.match(t)?document.cookie.match(t)[0].split("=")[1]:null},setCookie:function(e,t,n){if(typeof n!="undefined"){var r=new Date;r.setDate(r.getDate()+n),document.cookie=e+"="+t+"; path=/; expires="+r.toGMTString()}else document.cookie=e+"="+t+"; path=/"},urlparamselect:function(){return window.location.search.match(/expanddiv=([\w\-_,]+)/i),RegExp.$1!=""?RegExp.$1.split(","):[]},preloadimage:function(){var e=this.preloadimages;for(var t=0;t<arguments.length;t++)arguments[t]&&arguments[t].length>0&&(e[e.length]=new Image,e[e.length-1].src=arguments[t])}};
+			//1) You can now insert rel="expand[divid] | collapse[divid] | toggle[divid]" inside arbitrary links to act as DIV togglers
+			//2) For image toggler links, you can insert the attributes "data-openimage" and "data-closedimage" to update its image based on the DIV state
+
+var animatedcollapse={
+divholders: {}, //structure: {div.id, div.attrs, div.$divref, div.$togglerimage}
+divgroups: {}, //structure: {groupname.count, groupname.lastactivedivid}
+lastactiveingroup: {}, //structure: {lastactivediv.id}
+preloadimages: [],
+
+show:function(divids){ //public method
+	if (typeof divids=="object"){
+		for (var i=0; i<divids.length; i++)
+			this.showhide(divids[i], "show")
+	}
+	else
+		this.showhide(divids, "show")
+},
+
+hide:function(divids){ //public method
+	if (typeof divids=="object"){
+		for (var i=0; i<divids.length; i++)
+			this.showhide(divids[i], "hide")
+	}
+	else
+		this.showhide(divids, "hide")
+},
+
+toggle:function(divid){ //public method
+	if (typeof divid=="object")
+		divid=divid[0]
+	this.showhide(divid, "toggle")
+},
+
+addDiv:function(divid, attrstring){ //public function
+	this.divholders[divid]=({id: divid, $divref: null, attrs: attrstring})
+	this.divholders[divid].getAttr=function(name){ //assign getAttr() function to each divholder object
+		var attr=new RegExp(name+"=([^,]+)", "i") //get name/value config pair (ie: width=400px,)
+		return (attr.test(this.attrs) && parseInt(RegExp.$1)!=0)? RegExp.$1 : null //return value portion (string), or 0 (false) if none found
+	}
+	this.currentid=divid //keep track of current div object being manipulated (in the event of chaining)
+	return this
+},
+
+showhide:function(divid, action){
+	var $divref=this.divholders[divid].$divref //reference collapsible DIV
+	if (this.divholders[divid] && $divref.length==1){ //if DIV exists
+		var targetgroup=this.divgroups[$divref.attr('groupname')] //find out which group DIV belongs to (if any)
+		if ($divref.attr('groupname') && targetgroup.count>1 && (action=="show" || action=="toggle" && $divref.css('display')=='none')){ //If current DIV belongs to a group
+			if (targetgroup.lastactivedivid && targetgroup.lastactivedivid!=divid) //if last active DIV is set
+				this.slideengine(targetgroup.lastactivedivid, 'hide') //hide last active DIV within group first
+				this.slideengine(divid, 'show')
+			targetgroup.lastactivedivid=divid //remember last active DIV
+		}
+		else{
+			this.slideengine(divid, action)
+		}
+	}
+},
+
+slideengine:function(divid, action){
+	var $divref=this.divholders[divid].$divref
+	var $togglerimage=this.divholders[divid].$togglerimage
+	if (this.divholders[divid] && $divref.length==1){ //if this DIV exists
+		var animateSetting={height: action}
+		if ($divref.attr('fade'))
+			animateSetting.opacity=action
+		$divref.animate(animateSetting, $divref.attr('speed')? parseInt($divref.attr('speed')) : 500, function(){
+			if ($togglerimage){
+				$togglerimage.attr('src', ($divref.css('display')=="none")? $togglerimage.data('srcs').closed : $togglerimage.data('srcs').open)
+			}
+			if (animatedcollapse.ontoggle){
+				try{
+					animatedcollapse.ontoggle(jQuery, $divref.get(0), $divref.css('display'))
+				}
+				catch(e){
+					alert("An error exists inside your \"ontoggle\" function:\n\n"+e+"\n\nAborting execution of function.")
+				}
+			}
+		})
+		return false
+	}
+},
+
+generatemap:function(){
+	var map={}
+	for (var i=0; i<arguments.length; i++){
+		if (arguments[i][1]!=null){ //do not generate name/value pair if value is null
+			map[arguments[i][0]]=arguments[i][1]
+		}
+	}
+	return map
+},
+
+init:function(){
+	var ac=this
+	jQuery(document).ready(function($){
+		animatedcollapse.ontoggle=animatedcollapse.ontoggle || null
+		var urlparamopenids=animatedcollapse.urlparamselect() //Get div ids that should be expanded based on the url (['div1','div2',etc])
+		var persistopenids=ac.getCookie('acopendivids') //Get list of div ids that should be expanded due to persistence ('div1,div2,etc')
+		var groupswithpersist=ac.getCookie('acgroupswithpersist') //Get list of group names that have 1 or more divs with "persist" attribute defined
+		if (persistopenids!=null) //if cookie isn't null (is null if first time page loads, and cookie hasnt been set yet)
+			persistopenids=(persistopenids=='nada')? [] : persistopenids.split(',') //if no divs are persisted, set to empty array, else, array of div ids
+		groupswithpersist=(groupswithpersist==null || groupswithpersist=='nada')? [] : groupswithpersist.split(',') //Get list of groups with divs that are persisted
+		jQuery.each(ac.divholders, function(){ //loop through each collapsible DIV object
+			this.$divref=$('#'+this.id)
+			if ((this.getAttr('persist') || jQuery.inArray(this.getAttr('group'), groupswithpersist)!=-1) && persistopenids!=null){ //if this div carries a user "persist" setting, or belong to a group with at least one div that does
+				var cssdisplay=(jQuery.inArray(this.id, persistopenids)!=-1)? 'block' : 'none'
+			}
+			else{
+				var cssdisplay=this.getAttr('hide')? 'none' : null
+			}
+			if (urlparamopenids[0]=="all" || jQuery.inArray(this.id, urlparamopenids)!=-1){ //if url parameter string contains the single array element "all", or this div's ID
+				cssdisplay='block' //set div to "block", overriding any other setting
+			}
+			else if (urlparamopenids[0]=="none"){
+				cssdisplay='none' //set div to "none", overriding any other setting
+			}
+			this.$divref.css(ac.generatemap(['height', this.getAttr('height')], ['display', cssdisplay]))
+			this.$divref.attr(ac.generatemap(['groupname', this.getAttr('group')], ['fade', this.getAttr('fade')], ['speed', this.getAttr('speed')]))
+			if (this.getAttr('group')){ //if this DIV has the "group" attr defined
+				var targetgroup=ac.divgroups[this.getAttr('group')] || (ac.divgroups[this.getAttr('group')]={}) //Get settings for this group, or if it no settings exist yet, create blank object to store them in
+				targetgroup.count=(targetgroup.count||0)+1 //count # of DIVs within this group
+				if (jQuery.inArray(this.id, urlparamopenids)!=-1){ //if url parameter string contains this div's ID
+					targetgroup.lastactivedivid=this.id //remember this DIV as the last "active" DIV (this DIV will be expanded). Overrides other settings
+					targetgroup.overridepersist=1 //Indicate to override persisted div that would have been expanded
+				}
+				if (!targetgroup.lastactivedivid && this.$divref.css('display')!='none' || cssdisplay=="block" && typeof targetgroup.overridepersist=="undefined") //if this DIV was open by default or should be open due to persistence								
+					targetgroup.lastactivedivid=this.id //remember this DIV as the last "active" DIV (this DIV will be expanded)
+				this.$divref.css({display:'none'}) //hide any DIV that's part of said group for now
+			}
+		}) //end divholders.each
+		jQuery.each(ac.divgroups, function(){ //loop through each group
+			if (this.lastactivedivid && urlparamopenids[0]!="none") //show last "active" DIV within each group (one that should be expanded), unless url param="none"
+				ac.divholders[this.lastactivedivid].$divref.show()
+		})
+		if (animatedcollapse.ontoggle){
+			jQuery.each(ac.divholders, function(){ //loop through each collapsible DIV object and fire ontoggle event
+				animatedcollapse.ontoggle(jQuery, this.$divref.get(0), this.$divref.css('display'))
+			})
+		}
+ 		//Parse page for links containing rel attribute
+		var $allcontrols=$('a[rel]').filter('[rel^="collapse["], [rel^="expand["], [rel^="toggle["]') //get all elements on page with rel="collapse[]", "expand[]" and "toggle[]"
+		$allcontrols.each(function(){ //loop though each control link
+			this._divids=this.getAttribute('rel').replace(/(^\w+)|(\s+)/g, "").replace(/[\[\]']/g, "") //cache value 'div1,div2,etc' within identifier[div1,div2,etc]
+			if (this.getElementsByTagName('img').length==1 && ac.divholders[this._divids]){ //if control is an image link that toggles a single DIV (must be one to one to update status image)
+				animatedcollapse.preloadimage(this.getAttribute('data-openimage'), this.getAttribute('data-closedimage')) //preload control images (if defined)
+				$togglerimage=$(this).find('img').eq(0).data('srcs', {open:this.getAttribute('data-openimage'), closed:this.getAttribute('data-closedimage')}) //remember open and closed images' paths
+				ac.divholders[this._divids].$togglerimage=$(this).find('img').eq(0) //save reference to toggler image (to be updated inside slideengine()
+				ac.divholders[this._divids].$togglerimage.attr('src', (ac.divholders[this._divids].$divref.css('display')=="none")? $togglerimage.data('srcs').closed : $togglerimage.data('srcs').open)
+			}
+			$(this).click(function(){ //assign click behavior to each control link
+				var relattr=this.getAttribute('rel')
+				var divids=(this._divids=="")? [] : this._divids.split(',') //convert 'div1,div2,etc' to array 
+				if (divids.length>0){
+					animatedcollapse[/expand/i.test(relattr)? 'show' : /collapse/i.test(relattr)? 'hide' : 'toggle'](divids) //call corresponding public function
+					return false
+				}
+			}) //end control.click
+		})// end control.each
+
+		$(window).bind('unload', function(){
+			ac.uninit()
+		})
+	}) //end doc.ready()
+},
+
+uninit:function(){
+	var opendivids='', groupswithpersist=''
+	jQuery.each(this.divholders, function(){
+		if (this.$divref.css('display')!='none'){
+			opendivids+=this.id+',' //store ids of DIVs that are expanded when page unloads: 'div1,div2,etc'
+		}
+		if (this.getAttr('group') && this.getAttr('persist'))
+			groupswithpersist+=this.getAttr('group')+',' //store groups with which at least one DIV has persistance enabled: 'group1,group2,etc'
+	})
+	opendivids=(opendivids=='')? 'nada' : opendivids.replace(/,$/, '')
+	groupswithpersist=(groupswithpersist=='')? 'nada' : groupswithpersist.replace(/,$/, '')
+	this.setCookie('acopendivids', opendivids)
+	this.setCookie('acgroupswithpersist', groupswithpersist)
+},
+
+getCookie:function(Name){ 
+	var re=new RegExp(Name+"=[^;]*", "i"); //construct RE to search for target name/value pair
+	if (document.cookie.match(re)) //if cookie found
+		return document.cookie.match(re)[0].split("=")[1] //return its value
+	return null
+},
+
+setCookie:function(name, value, days){
+	if (typeof days!="undefined"){ //if set persistent cookie
+		var expireDate = new Date()
+		expireDate.setDate(expireDate.getDate()+days)
+		document.cookie = name+"="+value+"; path=/; expires="+expireDate.toGMTString()
+	}
+	else //else if this is a session only cookie
+		document.cookie = name+"="+value+"; path=/"
+},
+
+urlparamselect:function(){
+	window.location.search.match(/expanddiv=([\w\-_,]+)/i) //search for expanddiv=divid or divid1,divid2,etc
+	return (RegExp.$1!="")? RegExp.$1.split(",") : []
+},
+
+preloadimage:function(){
+	var preloadimages=this.preloadimages
+	for (var i=0; i<arguments.length; i++){
+		if (arguments[i] && arguments[i].length>0){
+			preloadimages[preloadimages.length]=new Image()
+			preloadimages[preloadimages.length-1].src=arguments[i]
+		}
+	}
+}
+
+}
+;

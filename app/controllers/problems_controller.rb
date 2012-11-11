@@ -1,6 +1,6 @@
 class ProblemsController < ApplicationController
   before_filter :require_login, :only => [:submit_solution]
-
+  before_filter :require_admin, :only => [:create]
 
   def index
   end
@@ -16,6 +16,15 @@ class ProblemsController < ApplicationController
                         )
     soln.save!
     return redirect_to :back
+  end
+
+  def submit_problem
+    prob = Problem.new(:name => params[:name],
+                       :category => params[:problem]['category'],
+                       :description => params[:description]
+                       )
+    prob.save!
+    return redirect_to :controller => "home", :action => "index"
   end
 
 end
