@@ -1,0 +1,19 @@
+<% if current_user %>
+<p>
+  You are not allowed to see this page.
+</p>
+
+<p>
+  You are currently logged in as <%= current_user.email %>. Please
+  <%= link_to 'log out', session_path, :method => :delete %> and log in as a
+  different user.
+</p>
+<% else %>
+<p>
+  The page you are trying to see requires that you
+  <%= link_to 'log in', new_session_path %>.
+</p>
+<script type="text/javascript">
+window.location = "<%= new_session_path %>";
+</script>
+<% end %>

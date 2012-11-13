@@ -1,14 +1,39 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "login" %>
+  <%= stylesheet_link_tag "community" %>
+  <%= javascript_include_tag "login" %>
+<% end %>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
+<h2>Account Information</h2>
 
-<p>
-  <b>Email:</b>
+<div class="user_field_label">Email</div>
+<div class="user_field_data">
   <%= @user.email %>
-</p>
+</div>
+<div class="clear"> </div>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% if @user == current_user %>
+  <div class="user_field_label">Password</div>
+  <div class="user_field_data">
+    <span class="password">&lt;hidden&gt;</span>
+    <%= link_to image_tag("edit.png", :class => "user_field_edit"), change_password_session_path %>
+  </div>
+  <div class="clear"> </div>
+<% end %>
+
+<div class="hidden">
+  <div id="edit_password_content">
+    <%= form_tag("/edit_password", :method => "post", :id => "edit_password_form") do %>
+      <h2>Edit Password</h2>
+      <hr />
+      <%= label_tag :password, "Password" %>
+      <%= password_field_tag :password %>
+      <div class="clear"> </div>
+      <%= label_tag :password, "Re-type Password" %>
+      <%= password_field_tag :repassword %>
+      <div class="clear"> </div>
+      <%= submit_tag "Submit" %>
+    <% end %>
+  </div>
+</div>
+

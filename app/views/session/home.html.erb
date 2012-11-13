@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag    "home", :media => "all" %>
+
+<% if current_user.admin %>
+<p>
+  <a href="/admin">Admin panel</a>
+</p>
+<% end %>
+
+<% @categories.each do |category| %>
+<div class="category">
+  <h2><%= category.name %></h2>
+
+  <% category.problems.each do |problem| %>
+  <div class="problem">
+    <h3 class="problem-header">
+      <%= link_to problem.name, new_submission_path(problem_id: problem) %>
+    </h3>
+
+    <% if problem.submissions.for_user(current_user).empty? %>
+      You have not yet attempted to solve this problem.
+    <% else %>
+      <h4>Submissions</h4>
+      <% problem.submissions.for_user(current_user).recent_first.
+                 each do |submission| %>
+      <div class="solution">
+        <%= submission.created_at.strftime('%H:%M:%S') %>
+        <div class="solution-body">
+          <%= submission.code %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+  </div>
+  <% end %>
+
+</div>
+<% end %>

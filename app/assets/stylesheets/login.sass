@@ -1,11 +1,13 @@
 @import 'mixins'
 
 
-form#registration_form label, form#account_form label, form#edit_name_form label, form#edit_password_form label
-  width: 140px
+form#registration_form, form#account_form, form#edit_name_form, form#edit_password_form
+  label
+    width: 140px
 
-form#registration_form input[type=submit], form#account_form input[type=submit], form#edit_name_form input[type=submit], form#edit_password_form input[type=submit]
-  margin-left: 160px
+form#registration_form, form#account_form, form#edit_name_form, form#edit_password_form
+  button
+    margin-left: 160px
 
 div.user_field_label
   float: left

@@ -1,0 +1,18 @@
+<h3>
+  <%= @submission.problem.name %> (<%= @submission.problem.category.name %>)
+</h3>
+
+<div>Problem statement:</div>
+<div class="description">
+  <%= @submission.problem.name %>
+</div>
+
+<%= form_for(@submission, id: 'solution_form') do |f| %>
+  <%= f.hidden_field :problem_id %>
+  <p>Your code</p>
+  <%= f.text_area :code %>
+  <div class="clear"> </div>
+  <%= f.button type: 'submit' do %>
+    Submit
+  <% end %>
+<% end %>

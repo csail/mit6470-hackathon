@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+css = Category.create! name: 'CSS'
+js = Category.create! name: 'JavaScript'
+sql = Category.create! name: 'SQL'
+
+sinatra = Endpoint.create! name: 'CSS / JS', url: 'http://127.0.0.1:9000'
+Problem.create! category: js, name: 'Outer door', task_name: 'js_var',
+                endpoint: sinatra

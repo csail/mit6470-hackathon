@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>6.470</title>
+  <title>6.470 Arctic Heist 2012</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= yield :head %>
@@ -15,13 +15,14 @@
       <div id="logo_container">
       </div>
       <div id="login_container">
-        <% if @user %>
-          <%= link_to @user.name, '/account/'+@user.id.to_s %> &nbsp;&nbsp;|&nbsp;&nbsp;
-          <%= link_to_function "Log Out", "$('form#log_out_form').submit();" %>
-          <%= form_tag("/submit_logout", :id => 'log_out_form', :class => "hidden", :method => "post") do %>
-          <% end %>
+        <% if current_user %>
+          <%= link_to current_user.email, current_user  %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'Log Out', session_path, :method => :delete %>
         <% else %>
-          <%= link_to 'Sign In', '#login_content', :id => 'sign_in_button' %>&nbsp;&nbsp;|&nbsp;&nbsp;<%= link_to 'Register', '#register_content', :id => 'register_button' %>
+          <%= link_to 'Sign In', new_session_path %>
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          <%= link_to 'Register', new_user_path %>
         <% end %>
       </div>
       <div class="clear"> </div>
@@ -30,14 +31,9 @@
 
   <div id="main_container">
     <div id="main">
-      <div class="hidden">
-        <div id="login_content">
-          <%= render "login/login" %>
-        </div>
-        <div id="register_content">
-          <%= render "login/register" %>
-        </div>
-      </div>
+      <% if flash[:notice] %>
+        <div class="message"><%= flash[:notice] %><%= image_tag "close.png", :class => "hover_link flash_close" %><div class="clear"> </div></div>
+      <% end %>
 
       <% if flash[:message] != nil %>
         <% for message in flash[:message] %>

@@ -1,24 +1,15 @@
-require 'socket'
-require 'json'
-require 'cgi'
-
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  authenticates_using_session
 
   # use this as a before filter for pages that require authentication
   def require_login
-    if !@user
-      flash.keep
-      return redirect_to :controller => "login", :action => "index"
-    end
+    bounce_user unless current_user
   end
 
   # require admin privileges
   def require_admin
-    if !@user or !(@user.admin)
-      flash.keep
-      return redirect_to :back
-    end
+    bounce_user unless current_user and current_user.admin
   end
 
   # show a message
@@ -54,34 +45,4 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
-  # look up the user in the database
-  before_filter :lookup_user
-  def lookup_user
-    # check if the user is logged in
-    if session[:current_user_id]
-      begin
-        @user = User.find(session[:current_user_id])
-      rescue
-        @user = nil
-      end
-    else
-      @user = nil
-    end
-  end
-
-  # this records the route for non login/registration pages -- called as a before filter for every request
-  before_filter :record_route
-  def record_route
-    # if there is no stored route, just store the home page
-    session[:last_params] ||= { :last_controller => "home", :last_action => "index" }
-
-    # clear the autocomplete stuff for the login/registration forms
-    session[:autocomplete_email] = ""
-    session[:autocomplete_name] = ""
-
-    # store the route
-    session[:last_params] = params
-  end
-
 end

@@ -84,7 +84,7 @@ form.popup
     color: #444
     resize: none
 
-  input[type=submit]
+  input[type=submit], button
     display: block
     float: none
     margin-left: 100px
@@ -96,10 +96,10 @@ form.popup
     border: 1px solid #ccc
     text-shadow: 1px 1px 0px #fff
 
-  input[type=submit]:hover
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2')
-    background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f2f2f2))
-    background: -moz-linear-gradient(top,  #f9f9f9,  #f2f2f2)
+    &:hover
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2')
+      background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f2f2f2))
+      background: -moz-linear-gradient(top,  #f9f9f9,  #f2f2f2)
 
 form.confirmation_form
   text-align: center

@@ -1,0 +1,41 @@
+<h2>Sign in</h2>
+
+<% if @redirect_url %>
+<p>
+  We need you to log in before we can show you the page that you are trying to
+  view.
+</p>
+<% end %>
+
+<%= form_tag session_path, id: 'login_form' do %>
+  <div class="field">
+    <%= label_tag :email, 'Email Address' %><br />
+    <span class="value">
+      <%= email_field_tag :email, @email, autofocus: true, required: true,
+            placeholder: 'you@mit.edu' %>
+    </span>
+  </div>
+
+  <div class="field">
+    <%= label_tag :password %><br />
+    <span class="value">
+      <%= password_field_tag :password %>
+    </span>
+  </div>
+
+  <div class="actions">
+    <%= button_tag 'Log in', type: 'submit', name: 'login',
+          value: 'requested' %>
+    <%= button_tag 'Reset Password', type: 'submit', name: 'reset_password',
+          value: 'requested', formaction: reset_password_session_path %>
+
+    <% if @redirect_url %>
+    <%= hidden_field_tag :redirect_url, @redirect_url %>
+    <% end %>
+  </div>
+<% end %>
+
+<p id="new_users">
+  Don't have an account yet?
+  <%= link_to 'Click here to register', new_user_path %>.
+</p>

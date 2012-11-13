@@ -1,0 +1,48 @@
+<h2>New submission</h2>
+
+<%= form_tag new_submission_path, method: :get do %>
+  <section class="fields">
+    <p class="field">
+      <%= label_tag :problem_id, 'Problem' %>
+      <span class="value">
+        <%= select_tag :problem_id,
+              options_from_collection_for_select(@problems, :id, :long_name) %>
+      </span>
+    </p>
+  </section>
+  <p class="actions">
+    <%= button_tag type: 'submit' do %>
+      Go to Problem
+    <% end %>
+  </p>
+<% end %>
+
+<h2>Your submissions</h2>
+
+<section class="submissions">
+<% @submissions.each do |submission| %>
+  <p class="submission">
+    <span class="time">
+      <%= submission.created_at.strftime('%H:%M:%S') %>
+    </span>
+    <span class="problem">
+      <%= submission.problem.name %>
+    </span>
+    <% if submission.verdict %>
+      <% if submission.verdict.accepted? %>
+      <span class="verdict verdict-accepted">
+        <%= submission.verdict.message %>
+      </span>
+      <% else %>
+      <span class="verdict verdict-rejected">
+        <%= submission.verdict.message %>
+      </span>
+      <% end %>
+    <% else %>
+    <span class="verdict verdict-queued">
+      Queued
+    </span>
+    <% end %>
+  </p>
+<% end %>
+</section>
