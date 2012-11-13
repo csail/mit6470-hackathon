@@ -8,9 +8,11 @@ ActiveAdmin.register Submission do
     end
     column :problem
     column :user
-    column :score
-    column :max_score, label: 'Max. score'
-    column :verdict_message, label: 'Verdict'
+    column 'IP', :remote_ip
+    column 'Score' do |submission|
+      "#{submission.score} / #{submission.max_score}"
+    end
+    column 'Verdict', :verdict_message
   end
   config.sort_order = 'created_at_asc'
 
