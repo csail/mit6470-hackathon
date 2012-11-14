@@ -61,7 +61,8 @@ module Minicontest
 
     config.sass.preferred_syntax = :sass
 
-    config.assets.precompile = ['*.js', '*.css', '*.png']
+    #config.assets.precompile = ['*.js', '*.css', '*.png']
+    config.assets.precompile += ['active_admin.css', 'active_admin.js']
 
   end
 end

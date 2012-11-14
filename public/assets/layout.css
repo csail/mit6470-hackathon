@@ -53,20 +53,7 @@ span.light {
 }
 
 /* line 40, ../../app/assets/stylesheets/layout.sass */
-form {
-  display: block;
-  padding: 10px;
-}
-
-/* */
-/* line 44, ../../app/assets/stylesheets/layout.sass */
-form label {
-  display: block;
-  float: left;
-}
-
-/* line 53, ../../app/assets/stylesheets/layout.sass */
-form button, button {
+button {
   display: block;
   float: left;
   margin-left: 20px;
@@ -80,8 +67,32 @@ form button, button {
   color: #444444;
 }
 
-/* line 65, ../../app/assets/stylesheets/layout.sass */
-form textarea {
+/* line 51, ../../app/assets/stylesheets/layout.sass */
+form.popup {
+  display: block;
+  padding: 10px;
+}
+/* line 55, ../../app/assets/stylesheets/layout.sass */
+form.popup label {
+  display: block;
+  float: left;
+}
+/* line 63, ../../app/assets/stylesheets/layout.sass */
+form.popup input {
+  display: block;
+  float: left;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  width: 200px;
+  padding: 5px;
+  border: 1px solid #cccccc;
+  -moz-box-shadow: 0 0 5px 0 #cccccc inset;
+  -webkit-box-shadow: 0 0 5px 0 #cccccc inset;
+  box-shadow: 0 0 5px 0 #cccccc inset;
+  color: #444444;
+}
+/* line 74, ../../app/assets/stylesheets/layout.sass */
+form.popup textarea {
   display: block;
   float: left;
   margin-left: 20px;
@@ -96,9 +107,8 @@ form textarea {
   color: #444444;
   resize: none;
 }
-
-/* line 78, ../../app/assets/stylesheets/layout.sass */
-form input[type=submit] {
+/* line 87, ../../app/assets/stylesheets/layout.sass */
+form.popup input[type=submit], form.popup button {
   display: block;
   float: none;
   margin-left: 100px;
@@ -112,44 +122,43 @@ form input[type=submit] {
   border: 1px solid #cccccc;
   text-shadow: 1px 1px 0px white;
 }
-
-/* line 90, ../../app/assets/stylesheets/layout.sass */
-form input[type=submit]:hover {
+/* line 99, ../../app/assets/stylesheets/layout.sass */
+form.popup input[type=submit]:hover, form.popup button:hover {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#f2f2f2');
   background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f2f2f2));
   background: -moz-linear-gradient(top, #f9f9f9, #f2f2f2);
 }
 
-/* line 95, ../../app/assets/stylesheets/layout.sass */
+/* line 104, ../../app/assets/stylesheets/layout.sass */
 form.confirmation_form {
   text-align: center;
 }
 
-/* line 98, ../../app/assets/stylesheets/layout.sass */
+/* line 107, ../../app/assets/stylesheets/layout.sass */
 form.confirmation_form h2 {
   text-align: center;
   margin-bottom: 5px;
 }
 
-/* line 102, ../../app/assets/stylesheets/layout.sass */
+/* line 111, ../../app/assets/stylesheets/layout.sass */
 form.confirmation_form hr {
   text-align: center;
   margin-top: 5px;
 }
 
-/* line 106, ../../app/assets/stylesheets/layout.sass */
+/* line 115, ../../app/assets/stylesheets/layout.sass */
 form.confirmation_form input[type=submit] {
   margin-left: auto;
   margin-right: auto;
 }
 
 /* page header */
-/* line 112, ../../app/assets/stylesheets/layout.sass */
+/* line 121, ../../app/assets/stylesheets/layout.sass */
 div#header_container {
   position: relative;
   z-index: 100;
 }
-/* line 118, ../../app/assets/stylesheets/layout.sass */
+/* line 127, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header {
   width: 800px;
   margin-left: auto;
@@ -157,42 +166,42 @@ div#header_container div#header {
   color: #666666;
   text-shadow: none;
 }
-/* line 125, ../../app/assets/stylesheets/layout.sass */
+/* line 134, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header a {
   color: #999999;
   text-decoration: none;
 }
-/* line 128, ../../app/assets/stylesheets/layout.sass */
+/* line 137, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header a:visited {
   color: #999999;
 }
-/* line 130, ../../app/assets/stylesheets/layout.sass */
+/* line 139, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header a:hover {
   color: #cccccc;
 }
-/* line 132, ../../app/assets/stylesheets/layout.sass */
+/* line 141, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header a:active {
   color: #999999;
 }
-/* line 135, ../../app/assets/stylesheets/layout.sass */
+/* line 144, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header div#logo_container {
   float: left;
   width: 200px;
 }
-/* line 139, ../../app/assets/stylesheets/layout.sass */
+/* line 148, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header img#logo {
   display: block;
   float: left;
   padding: 11px 0px 12px 0px;
 }
-/* line 144, ../../app/assets/stylesheets/layout.sass */
+/* line 153, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header div#navigation_container {
   float: left;
   width: 560px;
   padding-top: 26px;
   text-align: center;
 }
-/* line 150, ../../app/assets/stylesheets/layout.sass */
+/* line 159, ../../app/assets/stylesheets/layout.sass */
 div#header_container div#header div#login_container {
   float: right;
   text-align: right;
@@ -201,7 +210,7 @@ div#header_container div#header div#login_container {
 }
 
 /* main content */
-/* line 163, ../../app/assets/stylesheets/layout.sass */
+/* line 172, ../../app/assets/stylesheets/layout.sass */
 div#main_container div#main {
   width: 800px;
   margin-left: auto;
@@ -224,7 +233,7 @@ div#main_container div#main {
  *   +box-shadow(0px, 1px, 3px, 0px, #ddd)
  *   border: 1px solid #f2aaaa
  *   text-shadow: none */
-/* line 184, ../../app/assets/stylesheets/layout.sass */
+/* line 193, ../../app/assets/stylesheets/layout.sass */
 img.flash_close {
   display: block;
   float: right;
@@ -232,7 +241,7 @@ img.flash_close {
 }
 
 /* page footer */
-/* line 191, ../../app/assets/stylesheets/layout.sass */
+/* line 200, ../../app/assets/stylesheets/layout.sass */
 div#footer_container {
   position: relative;
   z-index: 100;
@@ -241,7 +250,7 @@ div#footer_container {
   -webkit-box-shadow: 0px 0px 10px 0px #333333;
   box-shadow: 0px 0px 10px 0px #333333;
 }
-/* line 197, ../../app/assets/stylesheets/layout.sass */
+/* line 206, ../../app/assets/stylesheets/layout.sass */
 div#footer_container div#footer {
   width: 960px;
   margin: 0 auto;
@@ -249,40 +258,40 @@ div#footer_container div#footer {
   padding: 20px 0px;
   text-shadow: none;
 }
-/* line 203, ../../app/assets/stylesheets/layout.sass */
+/* line 212, ../../app/assets/stylesheets/layout.sass */
 div#footer_container div#footer a {
   color: #ff4040;
 }
-/* line 205, ../../app/assets/stylesheets/layout.sass */
+/* line 214, ../../app/assets/stylesheets/layout.sass */
 div#footer_container div#footer a:visited {
   color: #ff4040;
 }
-/* line 207, ../../app/assets/stylesheets/layout.sass */
+/* line 216, ../../app/assets/stylesheets/layout.sass */
 div#footer_container div#footer a:hover {
   color: #cccccc;
 }
-/* line 209, ../../app/assets/stylesheets/layout.sass */
+/* line 218, ../../app/assets/stylesheets/layout.sass */
 div#footer_container div#footer a:active {
   color: #ff4040;
 }
-/* line 212, ../../app/assets/stylesheets/layout.sass */
+/* line 221, ../../app/assets/stylesheets/layout.sass */
 div#footer_container div#footer_left {
   width: 600px;
   float: left;
 }
-/* line 216, ../../app/assets/stylesheets/layout.sass */
+/* line 225, ../../app/assets/stylesheets/layout.sass */
 div#footer_container div#footer_right {
   width: 340px;
   float: left;
   text-align: right;
   margin-left: 20px;
 }
-/* line 221, ../../app/assets/stylesheets/layout.sass */
+/* line 230, ../../app/assets/stylesheets/layout.sass */
 div#footer_container div#footer_right img {
   margin-left: 20px;
 }
 
-/* line 224, ../../app/assets/stylesheets/layout.sass */
+/* line 233, ../../app/assets/stylesheets/layout.sass */
 div#footer_shadow_cover {
   position: relative;
   z-index: 200;

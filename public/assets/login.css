@@ -1,14 +1,14 @@
-/* line 4, ../../app/assets/stylesheets/login.sass */
+/* line 5, ../../app/assets/stylesheets/login.sass */
 form#registration_form label, form#account_form label, form#edit_name_form label, form#edit_password_form label {
   width: 140px;
 }
 
-/* line 7, ../../app/assets/stylesheets/login.sass */
-form#registration_form input[type=submit], form#account_form input[type=submit], form#edit_name_form input[type=submit], form#edit_password_form input[type=submit] {
+/* line 9, ../../app/assets/stylesheets/login.sass */
+form#registration_form button, form#account_form button, form#edit_name_form button, form#edit_password_form button {
   margin-left: 160px;
 }
 
-/* line 10, ../../app/assets/stylesheets/login.sass */
+/* line 12, ../../app/assets/stylesheets/login.sass */
 div.user_field_label {
   float: left;
   width: 100px;
@@ -17,20 +17,20 @@ div.user_field_label {
   color: #999999;
 }
 
-/* line 17, ../../app/assets/stylesheets/login.sass */
+/* line 19, ../../app/assets/stylesheets/login.sass */
 div.user_field_data {
   float: left;
   width: 300px;
   padding: 0px 0px 10px 20px;
 }
 
-/* line 22, ../../app/assets/stylesheets/login.sass */
+/* line 24, ../../app/assets/stylesheets/login.sass */
 span.password {
   color: #999999;
   font-style: italic;
 }
 
-/* line 26, ../../app/assets/stylesheets/login.sass */
+/* line 28, ../../app/assets/stylesheets/login.sass */
 img.user_field_edit {
   margin: -3px 0px 0px 10px;
   position: relative;
@@ -39,18 +39,18 @@ img.user_field_edit {
   filter: alpha(opacity=50);
 }
 
-/* line 33, ../../app/assets/stylesheets/login.sass */
+/* line 35, ../../app/assets/stylesheets/login.sass */
 img.user_field_edit:hover {
   opacity: 1;
   filter: alpha(opacity=100);
 }
 
-/* line 37, ../../app/assets/stylesheets/login.sass */
+/* line 39, ../../app/assets/stylesheets/login.sass */
 div#delete_account_container {
   margin-top: 10px;
 }
 
-/* line 40, ../../app/assets/stylesheets/login.sass */
+/* line 42, ../../app/assets/stylesheets/login.sass */
 div.quiz_name {
   float: left;
   width: 200px;
@@ -58,26 +58,26 @@ div.quiz_name {
   color: #999999;
 }
 
-/* line 46, ../../app/assets/stylesheets/login.sass */
+/* line 48, ../../app/assets/stylesheets/login.sass */
 div.quiz_words {
   float: left;
   width: 300px;
   padding: 0px 0px 10px 20px;
 }
 
-/* line 51, ../../app/assets/stylesheets/login.sass */
+/* line 53, ../../app/assets/stylesheets/login.sass */
 div.score {
   height: 100 px;
   overflow: scroll;
 }
 
-/* line 55, ../../app/assets/stylesheets/login.sass */
+/* line 57, ../../app/assets/stylesheets/login.sass */
 div.quiz_scores {
   float: left;
   padding: 0px 0px 10px 20px;
 }
 
-/* line 59, ../../app/assets/stylesheets/login.sass */
+/* line 61, ../../app/assets/stylesheets/login.sass */
 div#my_words_container {
   height: 150px;
   overflow: auto;
@@ -91,7 +91,7 @@ div#my_words_container {
   color: #666666;
 }
 
-/* line 69, ../../app/assets/stylesheets/login.sass */
+/* line 71, ../../app/assets/stylesheets/login.sass */
 div.my_word_name {
   float: left;
   width: 100px;
@@ -100,13 +100,13 @@ div.my_word_name {
   margin-bottom: 2px;
 }
 
-/* line 76, ../../app/assets/stylesheets/login.sass */
+/* line 78, ../../app/assets/stylesheets/login.sass */
 div.my_word_pos {
   float: left;
   width: 100px;
 }
 
-/* line 80, ../../app/assets/stylesheets/login.sass */
+/* line 82, ../../app/assets/stylesheets/login.sass */
 div.my_word_definition {
   float: left;
   width: 700px;

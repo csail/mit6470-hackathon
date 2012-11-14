@@ -81,6 +81,14 @@ ActiveRecord::Schema.define(:version => 20121112230121) do
   add_index "problems", ["name"], :name => "index_problems_on_name", :unique => true
   add_index "problems", ["task_name"], :name => "index_problems_on_task_name", :unique => true
 
+  create_table "solutions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "problem_id"
+    t.text     "submission"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "submissions", :force => true do |t|
     t.integer  "user_id",                   :null => false
     t.integer  "problem_id",                :null => false

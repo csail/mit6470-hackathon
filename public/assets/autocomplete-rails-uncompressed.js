@@ -51,6 +51,10 @@
           jQuery.getJSON( jQuery(e).attr('data-autocomplete'), {
             term: extractLast( request.term )
           }, function() {
+            if(arguments[0].length == 0) {
+              arguments[0] = []
+              arguments[0][0] = { id: "", label: "no existing match" }
+            }
             jQuery(arguments[0]).each(function(i, el) {
               var obj = {};
               obj[el.id] = el;
@@ -58,6 +62,20 @@
             });
             response.apply(null, arguments);
           });
+        },
+        change: function( event, ui ) {
+            if(jQuery(jQuery(this).attr('data-id-element')).val() == "") {
+        	  	return;
+        	  }
+            jQuery(jQuery(this).attr('data-id-element')).val(ui.item ? ui.item.id : "");
+            var update_elements = jQuery.parseJSON(jQuery(this).attr("data-update-elements"));
+            var data = ui.item ? jQuery(this).data(ui.item.id.toString()) : {};
+            if(update_elements && jQuery(update_elements['id']).val() == "") { 
+            	return; 
+            }
+            for (var key in update_elements) {
+                jQuery(update_elements[key]).val(ui.item ? data[key] : "");
+            }  
         },
         search: function() {
           // custom minLength
@@ -100,8 +118,7 @@
               jQuery(this).unbind('keyup.clearId');
             }
           });
-          jQuery(this).trigger('railsAutocomplete.select', ui);
-
+          jQuery(e).trigger('railsAutocomplete.select', ui);
           return false;
         }
       });
