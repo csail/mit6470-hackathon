@@ -62,7 +62,14 @@ module Minicontest
     config.sass.preferred_syntax = :sass
 
     #config.assets.precompile = ['*.js', '*.css', '*.png']
-    config.assets.precompile += ['active_admin.css', 'active_admin.js']
+    
+    # Include all JS files, also those in subdolfer or javascripts assets folder
+    # includes for exmaple applicant.js. JS isn't the problem so the catch all works.
+    config.assets.precompile += %w(*.js)
+    # Replace %w( *.css *.js *.css.scss) with complex regexp avoiding SCSS partials compilation
+    config.assets.precompile += [/^[^_]\w+\.(css|sass)$/]
+    #Adding active_admin JS and CSS to the precompilation list
+    config.assets.precompile += %w( active_admin.css active_admin.js active_admin/print.css )
 
   end
 end
