@@ -1,2 +1,2 @@
-web: bundle exec thin --address 0.0.0.0 --port $PORT --rackup config.ru start
+web: bundle exec unicorn --host 0.0.0.0 --port $PORT config.ru
 worker: bundle exec script/delayed_job run
