@@ -27,5 +27,6 @@ RAILS_ENV=production bundle exec rake db:create db:migrate db:seed
 Daemon setup.
 
 ```
-bundle exec foreman export upstart --procfile=Procfile.prod --env=config/production.env --user=$USER --port=12300
+sudo foreman export systemd /etc/systemd/system --procfile=Procfile.prod --env=config/production.env --user=$USER --port=12300
+sudo foreman export upstart /etc/init --procfile=Procfile.prod --env=config/production.env --user=$USER --port=12300
 ```
