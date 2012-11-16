@@ -3,7 +3,9 @@ ActiveAdmin.register User do
 
   index do
     column :email
-    column :admin, label: 'Administrator'
+    column 'Administrator' do |user|
+      best_in_place user, :admin, type: :checkbox, path: [:admin, user]
+    end
     default_actions
   end
 

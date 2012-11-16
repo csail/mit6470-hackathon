@@ -1,2 +1,0 @@
-// utils for the tagging questions
-function getCheckedIds(){return $.map($(".question input:checked"),function(e){return parseInt($(e).attr("id"))})}function checkTags(e){$(".choices input").each(function(e){this.checked=!1});for(i in e)$(".choices input#"+e[i]).each(function(e){this.checked=!0})};

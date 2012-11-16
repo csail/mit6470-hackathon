@@ -4,7 +4,9 @@ ActiveAdmin.register Category do
   config.filters = false
 
   index download_links: false do
-    column 'UI name', :name
+    column 'UI name' do |category|
+      best_in_place category, :name, type: :input, path: [:admin, category]
+    end
 
     default_actions
   end
