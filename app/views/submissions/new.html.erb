@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag "submissions", :media => "all" %>
+<%= javascript_include_tag "app" %>
+
 <h3>
   <%= @submission.problem.name %> (<%= @submission.problem.category.name %>)
 </h3>
@@ -16,3 +19,134 @@
     Submit
   <% end %>
 <% end %>
+
+
+
+<div class="row">
+  <div class="twelve columns">
+    <h2>6.470 Arctic Heist - JavaScript Problem</h2>
+    <hr />
+  </div>
+</div>
+
+<div class="row">
+  <div class="twelve columns">
+    <div class="row">
+      <div class="eight columns">
+        <h3>Heist Time Management Tool</h3>
+      </div>
+      <div class="four columns"><p>Difficulty: <strong>Extreme</strong><br />Recommended Time: <strong>25 minutes</strong></p></div>
+    </div>  
+
+    <!-- Grid Example -->
+    <div class="row">
+      <div class="twelve columns">
+        <div class="panel">
+          <p>Based on your previous heisting experience, you've learnt that time management is a big factor
+          for the success of these heists. How much time will you spend planning your heist? sharpening your
+          grappling hooks? dramatically breaking through doors? You decide to make a handy tool
+          that'll help you make properly allocate your time.</p>
+        </div>
+      </div>
+    </div>
+    
+    <h3>Briefing</h3>
+    <div class="row">
+      <div class="twelve columns">
+        <div class="panel">
+          <p>
+            Write a function <span class="radius label">updateSliderValue(n, k)</span> that physically updates <strong>all</strong> sliders whenever
+            slider n is changed to value k (eg: if you decrease one
+            slider, the other sliders should physically move proportionally such that
+            all values add to 100). There are 3 sliders, all with ID 'sliderX' where X is slider number.
+          </p>
+          <p>
+            <strong>Some Notes:</strong>
+            <ul class='important-notes'>
+              <li>The sliders are part of JQuery UI: read the <a href='http://api.jqueryui.com/slider/'>API documentation</a></a></li>
+              <li>We do not expect this to be perfect, and so values can add to 100 &#177; 2.</li>
+              <li>When one value is zero, it should not move when another slider is moved</li>
+              <li>When two values are zero, they should move equally when the slider at 100 is decreased</li>
+              <li>The function <span class="radius label">updateDisplayValues()</span> updates all the numbers beside the slider to their respective values. This function is called everytime a slider is moved. You can complete this problem
+              without using it, but it is there for your convenience</li>
+            </ul>
+          </p>
+          <p>
+            The module on the right can help you test your code. Move the sliders and watch the values change.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <h3>Mission</h3>
+
+    <div class="row">
+      <div class="eight columns">
+        <div class="panel">
+          <div id="editor">function updateSliderValue(N, K) {
+  //your code here
+ 
+}</div>
+          <div class="centercontent">
+            <p>
+              <a id="submit_problem" class="success button">Update Code</a>
+              <a id="final_submit" class="button"  data-reveal-id="myModal2">Submit Solution</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="four columns">
+        <div id="updated-code-alert" class="alert-box alert">
+          code has not been updated.
+        </div>
+        <div class="panel">
+          <h4>Heist Planning App</h4>
+          <div class="row">
+            <div class="three columns">
+              <p><div>Planning</div></p>
+            </div>
+            <div class="seven columns">
+              <p><div id="slider1"></div></p>
+            </div>
+            <div class="two columns">
+              <p><div id="value1">0</div></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="three columns">
+              <p><div>Packing</div></p>
+            </div>
+            <div class="seven columns">
+              <p><div id="slider2"></div></p>
+            </div>
+            <div class="two columns">
+              <p><div id="value2">0</div></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="three columns">
+              <p><div>Heisting</div></p>
+            </div>
+            <div class="seven columns">
+              <p><div id="slider3"></div></p>
+            </div>
+            <div class="two columns">
+              <p><div id="value3">0</div></p>
+            </div>
+          </div>
+          <div class='centercontent'>
+            <a id='reset_values' class='secondary button'>Reset Sliders</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  
+</div>
+<div id="myModal2" class="reveal-modal">
+  Cannot submit solution. Backend does not exist, lol.
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+

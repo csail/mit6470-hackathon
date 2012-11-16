@@ -8,14 +8,15 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require lib/jquery-ui-1.9.1
+ *= require lib/foundation.min
+ *= require lib/fancybox
+ *= require_self
  *= require lib/normalize
  *= require lib/style
- *= require lib/fancybox
- *= require lib/video-js
- *= require lib/jquery-ui-1.8.17
- *= require lib/jquery.tagsinput.css
- *= require_self
  *
  *= require layout
  *= require login
 */
+
+
