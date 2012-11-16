@@ -14,6 +14,10 @@ ActiveAdmin.register Tokens::SessionUid, as: 'Session' do
 
   controller do
     actions :index, :show, :destroy
+
+    def resource
+      Tokens::SessionUid.with_param(params[:id]).first!
+    end
   end
 end
 

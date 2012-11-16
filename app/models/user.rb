@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
 
   # Add your extensions to the User class here.
   validates :admin, inclusion: { in: [true, false] }
+  attr_accessible :admin, as: :active_admin
+  attr_accessible :email, as: :active_admin
 
   has_many :solutions
 end

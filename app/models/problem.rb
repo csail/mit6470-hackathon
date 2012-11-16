@@ -2,20 +2,20 @@ class Problem < ActiveRecord::Base
   # CSS, JS, SQL.
   belongs_to :category
   validates :category, presence: true
-  attr_accessible :category_id, :category
+  attr_accessible :category_id, :category, as: :active_admin
 
   # User-friendly name.
   validates :name, presence: true, uniqueness: true, length: 1..128
-  attr_accessible :name
+  attr_accessible :name, as: :active_admin
 
   # Grading endpoint-friendly name.
   validates :task_name, presence: true, length: 1..32, format: /^[\w-]+$/
-  attr_accessible :task_name
+  attr_accessible :task_name, as: :active_admin
 
   # Grading endpoint.
   belongs_to :endpoint
   validates :endpoint, presence: true
-  attr_accessible :endpoint_id, :endpoint
+  attr_accessible :endpoint_id, :endpoint, as: :active_admin
 
   # User submissions for this problem.
   has_many :submissions, dependent: :destroy

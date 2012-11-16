@@ -22,7 +22,7 @@ ActiveAdmin.register User do
     actions :all, :except => [:show, :new, :create]
 
     def resource
-      User.find_by_param params[:id]
+      User.with_param(params[:id]).first!
     end
   end
 end
