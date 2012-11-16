@@ -1,4 +1,6 @@
 ActiveAdmin.register User do
+  menu parent: 'Accounts'
+
   index do
     column :email
     column :admin, label: 'Administrator'
@@ -14,5 +16,13 @@ ActiveAdmin.register User do
       f.input :admin, label: 'Administrator'
     end
     f.buttons
+  end
+
+  controller do
+    actions :all, :except => [:show, :new, :create]
+
+    def resource
+      User.find_by_param params[:id]
+    end
   end
 end

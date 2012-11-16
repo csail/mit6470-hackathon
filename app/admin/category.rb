@@ -16,5 +16,9 @@ ActiveAdmin.register Category do
     end
     f.buttons
   end
+
+  controller do
+    actions :all, :except => [:show]
+  end
 end
 

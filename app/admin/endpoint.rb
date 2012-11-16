@@ -17,5 +17,8 @@ ActiveAdmin.register Endpoint, as: 'Grading Endpoint' do
     end
     f.buttons
   end
-end
 
+  controller do
+    actions :all, :except => [:show]
+  end
+end
