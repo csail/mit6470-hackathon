@@ -13,4 +13,8 @@ sql = Category.create!({ name: 'SQL' }, as: :active_admin)
 sinatra = Endpoint.create!({ name: 'CSS / JS', url: 'http://127.0.0.1:9000' },
                            as: :active_admin)
 Problem.create!({ category: js, name: 'Outer door', task_name: 'js_var',
-                  endpoint: sinatra }, as: :active_admin)
+                  endpoint: sinatra, published: true,
+                  description_html: <<END_HTML }, as: :active_admin)
+<p>Sample problem description.</p>
+<p>This is <em>any</em> HTML.</p>
+END_HTML

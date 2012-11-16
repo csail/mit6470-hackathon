@@ -72,10 +72,12 @@ ActiveRecord::Schema.define(:version => 20121112230121) do
   add_index "endpoints", ["url"], :name => "index_endpoints_on_url", :unique => true
 
   create_table "problems", :force => true do |t|
-    t.integer "category_id", :null => false
-    t.integer "endpoint_id", :null => false
-    t.string  "name",        :null => false
-    t.string  "task_name",   :null => false
+    t.integer "category_id",                         :null => false
+    t.integer "endpoint_id",                         :null => false
+    t.string  "name",                                :null => false
+    t.string  "task_name",                           :null => false
+    t.boolean "published",        :default => false, :null => false
+    t.text    "description_html",                    :null => false
   end
 
   add_index "problems", ["name"], :name => "index_problems_on_name", :unique => true
@@ -93,10 +95,10 @@ ActiveRecord::Schema.define(:version => 20121112230121) do
   add_index "submissions", ["user_id", "problem_id", "created_at"], :name => "index_submissions_on_user_id_and_problem_id_and_created_at", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "exuid",      :limit => 32, :null => false
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
-    t.boolean  "admin"
+    t.string   "exuid",      :limit => 32,                    :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.boolean  "admin",                    :default => false, :null => false
   end
 
   add_index "users", ["exuid"], :name => "index_users_on_exuid", :unique => true

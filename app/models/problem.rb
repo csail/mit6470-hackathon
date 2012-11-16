@@ -17,13 +17,20 @@ class Problem < ActiveRecord::Base
   validates :endpoint, presence: true
   attr_accessible :endpoint_id, :endpoint, as: :active_admin
 
+  # Whether users can access the problem.
+  validates :published, inclusion: { in: [true, false] }
+  attr_accessible :published, as: :active_admin
+
+  # Raw HTML shown on the problem page.
+  validates :description_html, presence: true, length: 1..1.megabyte
+  attr_accessible :description_html, as: :active_admin
+
   # User submissions for this problem.
   has_many :submissions, dependent: :destroy
 
   # True if a user is allowed to see a problem and submit solutions to it.
   def visible_to?(user)
-    # TODO(pwnall): add published check when we implement the attr
-    !!user
+    !!user && published?
   end
 
   # Presentation :(
