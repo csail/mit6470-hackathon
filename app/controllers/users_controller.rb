@@ -22,9 +22,8 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.new params[:user]
-    if User.count == 0
-      @user.admin = true
-    end
+    # NOTE: the first user is an admin, must bestow admin on everyone else
+    @user.admin = (User.count == 0)
 
     respond_to do |format|
       if @user.save

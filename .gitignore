@@ -9,4 +9,7 @@
 
 # all logfiles and tempfiles.
 /log/*.log
-/tmp
+/tmp/**/*
+
+# hang onto some directory structure.
+!tmp/pids/.gitkeep

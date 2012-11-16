@@ -5,6 +5,7 @@ gem 'rails', '>= 3.2.9'
 gem 'activeadmin', '>= 0.5.0',
     git: 'git://github.com/pwnall/active_admin.git', branch: 'devise-soft-dep'
 gem 'authpwn_rails', '>= 0.13.2'
+gem 'daemons', '>= 1.1.9'
 gem 'delayed_job', '>= 3.0.3'
 gem 'delayed_job_active_record', '>= 0.3.3'
 gem 'pg', '>= 0.14.1'
@@ -29,5 +30,5 @@ end
 group :development, :test do
   gem 'foreman', '>= 0.60.2'
 end
-gem 'thin', '>= 1.5.0'
+gem 'unicorn', '>= 4.4.0'
 
