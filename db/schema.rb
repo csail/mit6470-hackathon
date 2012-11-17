@@ -99,9 +99,11 @@ ActiveRecord::Schema.define(:version => 20121112230121) do
     t.datetime "created_at",                                  :null => false
     t.datetime "updated_at",                                  :null => false
     t.boolean  "admin",                    :default => false, :null => false
+    t.string   "team_name",  :limit => 64,                    :null => false
   end
 
   add_index "users", ["exuid"], :name => "index_users_on_exuid", :unique => true
+  add_index "users", ["team_name"], :name => "index_users_on_team_name", :unique => true
 
   create_table "verdicts", :force => true do |t|
     t.integer  "submission_id", :null => false

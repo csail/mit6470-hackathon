@@ -51,7 +51,7 @@ GEM
     authpwn_rails (0.13.2)
       fbgraph_rails (>= 0.2.2)
       rails (>= 3.2.8)
-    best_in_place (1.1.2)
+    best_in_place (2.0.1)
       jquery-rails
       rails (~> 3.1)
     bourbon (2.1.2)
