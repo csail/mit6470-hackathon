@@ -2,10 +2,11 @@ class ScoresController < ApplicationController
   before_filter :require_login
 
   def index
+    bounce_user unless current_user.admin?
+
     @users = User.all.reject! { |user| user.admin? }
 
-    @problems = Problem.order(:name).all.
-                        select { |p| p.visible_to? current_user }
+    @problems = Problem.order(:name).all
 
     @scores = {}
     @submissions = {}
