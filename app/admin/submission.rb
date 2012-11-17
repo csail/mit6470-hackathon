@@ -25,6 +25,7 @@ ActiveAdmin.register Submission do
       f.input :score
       f.input :max_score, label: 'Max. score'
       f.input :verdict_message, label: 'Verdict'
+      f.input :code
     end
     f.buttons
   end
