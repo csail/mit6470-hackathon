@@ -11,10 +11,10 @@
 <body>
 
   <div id="header_container">
-    <div id="header">
-      <div id="logo_container">
+    <div id="header" class="row">
+      <div id="logo_container" class="eight columns">
       </div>
-      <div id="login_container">
+      <div id="login_container" class="four columns">
         <%= link_to 'Home', '/' %>&nbsp;&nbsp;|&nbsp;&nbsp;
         <% if current_user %>
           <%= link_to current_user.team_name, change_password_session_path  %>
@@ -26,12 +26,11 @@
           <%= link_to 'Register', new_user_path %>
         <% end %>
       </div>
-      <div class="clear"> </div>
     </div>
   </div>
 
-  <div id="main_container">
-    <div id="main">
+  <div id="main_container" class="row">
+    <div id="main" class="twelve columns">
       <% if flash[:notice] %>
         <div class="message"><%= flash[:notice] %><%= image_tag "close.png", :class => "hover_link flash_close" %><div class="clear"> </div></div>
       <% end %>
