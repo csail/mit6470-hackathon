@@ -21,6 +21,10 @@ class Problem < ActiveRecord::Base
   validates :published, inclusion: { in: [true, false] }
   attr_accessible :published, as: :active_admin
 
+  # Problem's weight in the scoring.
+  validates :weight, presence: true, numericality: { greater_than: 0 }
+  attr_accessible :weight, as: :active_admin
+
   # Raw HTML shown on the problem page.
   validates :description_html, presence: true, length: 1..1.megabyte
   attr_accessible :description_html, as: :active_admin
