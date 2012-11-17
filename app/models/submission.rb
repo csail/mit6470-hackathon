@@ -30,12 +30,12 @@ class Submission < ActiveRecord::Base
 
   # Score assigned by the grading endpoint.
   def score
-    verdict ? verdict.score : 0
+    verdict ? (verdict.score * problem.weight / verdict.max_score.to_f) : 0
   end
 
   # Maximum score this submission could have received.
   def max_score
-    verdict ? verdict.max_score : 0
+    problem.weight
   end
 
   # Short message describing the grading endpoint's decision.

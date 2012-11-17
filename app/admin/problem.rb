@@ -1,8 +1,7 @@
 ActiveAdmin.register Problem do
   menu parent: 'Setup'
 
-  filter :category
-  filter :endpoint, label: 'Grading endpoint'
+  config.filters = false
 
   index download_links: false do
     column :category do |problem|
@@ -13,7 +12,12 @@ ActiveAdmin.register Problem do
     column 'UI name' do |problem|
       best_in_place problem, :name, type: :input, path: [:admin, problem]
     end
-    column 'Endpoint name', :task_name
+    column 'Points' do |problem|
+      best_in_place problem, :weight, type: :input, path: [:admin, problem]
+    end
+    column 'Endpoint name' do |problem|
+      best_in_place problem, :task_name, type: :input, path: [:admin, problem]
+    end
     column 'Grading endpoint', :endpoint
     column 'Published' do |problem|
       best_in_place problem, :published, type: :checkbox,
@@ -28,6 +32,7 @@ ActiveAdmin.register Problem do
     f.inputs "Admin Details" do
       f.input :category
       f.input :name, label: 'UI name'
+      f.input :weight, label: 'Points'
       f.input :task_name, label: 'Endpoint name'
       f.input :endpoint, label: 'Grading endpoint'
       f.input :published, label: 'Published'

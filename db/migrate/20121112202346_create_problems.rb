@@ -6,6 +6,7 @@ class CreateProblems < ActiveRecord::Migration
       t.string :name, length: 128, null: false
       t.string :task_name, length: 32, null: false
       t.boolean :published, null: false, default: false
+      t.integer :weight, null: false, default: 1
       t.text :description_html, null: false
       # TODO(pwnall): fix rails bug -- pgsql doesn't allow limit: on text
       # t.text :description_html, limit: 1.megabyte, null: false
@@ -14,3 +15,4 @@ class CreateProblems < ActiveRecord::Migration
     add_index :problems, :task_name, unique: true, null: false
   end
 end
+
