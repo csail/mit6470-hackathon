@@ -33,6 +33,12 @@ class Submission < ActiveRecord::Base
   def score
     verdict ? (verdict.score * problem.weight / verdict.max_score.to_f) : 0
   end
+  def score=(new_score)
+    if verdict
+      verdict.score = (new_score / problem.weight) * verdict.max_score.to_f
+    end
+  end
+  attr_accessible :score, as: :active_admin
 
   # Maximum score this submission could have received.
   def max_score
