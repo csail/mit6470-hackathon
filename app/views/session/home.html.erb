@@ -10,7 +10,8 @@
 <div class="category">
   <h2><%= category.name %></h2>
 
-  <% category.problems.each do |problem| %>
+  <% category.problems.select { |problem| problem.visible_to? current_user }.
+              sort_by!(&:name).each do |problem| %>
   <div class="problem">
     <h3 class="problem-header">
       <%= link_to problem.name, new_submission_path(problem_id: problem) %>
