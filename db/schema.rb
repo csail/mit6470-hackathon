@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117042448) do
+ActiveRecord::Schema.define(:version => 20121117202351) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -114,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20121117042448) do
     t.decimal  "max_score",     :null => false
     t.text     "message",       :null => false
     t.datetime "created_at",    :null => false
+    t.text     "response_html"
   end
 
   add_index "verdicts", ["submission_id"], :name => "index_verdicts_on_submission_id", :unique => true

@@ -29,9 +29,9 @@
         <span class="verdict">
           <% if submission.verdict %>
             <% if submission.verdict.accepted? %>
-              Score: <%= submission.score() %>
+              Score: <%= link_to submission.score, submission.verdict %>
             <% else %>
-              <%= submission.verdict.message %>
+              <%= link_to submission.verdict.message, submission.verdict %>
             <% end %>
           <% else %>
             Queued for grading

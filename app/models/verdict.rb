@@ -16,9 +16,13 @@ class Verdict < ActiveRecord::Base
   # Brief verdict description from the endpoint.
   validates :message, length: 1..1024
 
+  # HTML response page from the endpoint.
+  validates :response_html, length: 1..1.megabyte, presence: true
+
   def self.from_endpoint_response(http_response, submission)
     verdict = Verdict.new submission: submission
     verdict.submission = submission
+    verdict.response_html = http_response.body
 
     if http_response.kind_of? Net::HTTPOK
       score = http_response['X-Grader-Score']
