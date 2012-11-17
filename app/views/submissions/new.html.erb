@@ -1,5 +1,11 @@
 <%= stylesheet_link_tag "submissions", :media => "all" %>
-<%= javascript_include_tag "app" %>
+
+<script src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<%= javascript_include_tag "lib/mode-javascript" %>
+<%= javascript_include_tag "lib/theme-monokai" %>
+
+<%= javascript_include_tag "submission" %>
+
 
 <h3>
   <%= @submission.problem.name %> (<%= @submission.problem.category.name %>)
