@@ -4,6 +4,11 @@ $(document).ready(function(){
   editor.setTheme("ace/theme/monokai");
   editor.getSession().setMode("ace/mode/javascript");
   editor.on("change", d);
+
+  $('#submission_code').hide();
+  $('#new_submission').submit(function(){
+    $('#submission_code').val(editor.getSession().getValue());
+  });
   
   function d(){
    $("#updated-code-alert").fadeIn()
