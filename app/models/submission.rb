@@ -26,6 +26,7 @@ class Submission < ActiveRecord::Base
 
   # Syntactic sugar.
   scope :for_user, lambda { |user| where user_id: user.id }
+  scope :for_problem, lambda { |problem| where problem_id: problem.id }
   scope :recent_first, lambda { order 'created_at DESC' }
 
   # Score assigned by the grading endpoint.
@@ -36,6 +37,11 @@ class Submission < ActiveRecord::Base
   # Maximum score this submission could have received.
   def max_score
     problem.weight
+  end
+
+  # True if the user got a full score on the problem.
+  def accepted?
+    verdict && verdict.accepted?
   end
 
   # Short message describing the grading endpoint's decision.

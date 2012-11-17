@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20121117042448) do
     t.string  "name",                                :null => false
     t.string  "task_name",                           :null => false
     t.boolean "published",        :default => false, :null => false
+    t.integer "weight",           :default => 1,     :null => false
     t.text    "description_html",                    :null => false
-    t.integer "weight",                              :null => false
     t.text    "code"
     t.text    "supplement"
   end

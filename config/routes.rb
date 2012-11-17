@@ -4,6 +4,7 @@ Minicontest::Application.routes.draw do
 
   resources :users, only: [:new, :create, :show]
   resources :submissions, only: [:index, :new, :create]
+  resources :scores, only: [:index]
 
   ActiveAdmin.routes(self)
 end
