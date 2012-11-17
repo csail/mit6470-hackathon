@@ -13,6 +13,8 @@ ActiveAdmin.register Submission do
       "#{submission.score} / #{submission.max_score}"
     end
     column 'Verdict', :verdict_message
+
+    default_actions
   end
   config.sort_order = 'created_at_asc'
 
