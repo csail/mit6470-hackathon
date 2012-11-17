@@ -2,7 +2,7 @@ class ScoresController < ApplicationController
   before_filter :require_login
 
   def index
-    @users = User.all
+    @users = User.all.reject! { |user| user.admin? }
 
     @problems = Problem.order(:name).all.
                         select { |p| p.visible_to? current_user }
