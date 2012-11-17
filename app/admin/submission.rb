@@ -16,7 +16,7 @@ ActiveAdmin.register Submission do
 
     default_actions
   end
-  config.sort_order = 'created_at_asc'
+  config.sort_order = 'created_at_desc'
 
   form do |f|
     f.inputs "Admin Details" do
