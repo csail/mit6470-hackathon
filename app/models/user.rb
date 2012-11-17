@@ -19,9 +19,16 @@ class User < ActiveRecord::Base
   end
 
   # Add your extensions to the User class here.
+
+  # True for staff.
   validates :admin, inclusion: { in: [true, false] }
   attr_accessible :admin, as: :active_admin
   attr_accessible :email, as: :active_admin
+
+  # Team name that shows up on the scoreboard.
+  validates :team_name, presence: true, length: 1..64, uniqueness: true
+  attr_accessible :team_name
+  attr_accessible :team_name, as: :active_admin
 
   has_many :solutions
 end

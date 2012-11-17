@@ -17,12 +17,18 @@
                       :class => :normal_input %>
   </div>
   <div class="field">
+    <%= f.label :team_name %><br />
+    <%= f.text_field :team_name, required: true, placeholder: 'Team Awesome',
+                     :class => :normal_input %>
+  </div>
+  <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, :class => :normal_input %>
+    <%= f.password_field :password, required: true, :class => :normal_input %>
   </div>
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, :class => :normal_input %>
+    <%= f.password_field :password_confirmation, required: true,
+                         :class => :normal_input %>
   </div>
 
   <div class="actions">
