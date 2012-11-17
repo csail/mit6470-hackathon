@@ -37,6 +37,7 @@ class Submission < ActiveRecord::Base
     new_score = new_score.to_f
     if verdict
       verdict.score = (new_score / problem.weight) * verdict.max_score.to_f
+      verdict.save!
     end
     new_score
   end
