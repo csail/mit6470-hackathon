@@ -12,11 +12,9 @@
  *= require lib/foundation.min
  *= require lib/fancybox
  *= require_self
- *= require lib/normalize
- *= require lib/style
  *
- *= require layout
- *= require login
+ *= require v_login
+ *= require v_main
 */
 
 

@@ -1,0 +1,25 @@
+#header_container{
+    background-color: #333;
+    border-style: solid;
+    border-color: #111;
+    border-width: 0 0 1px 0;
+}
+#header{
+    background-color: #262626;
+    /*background-image: url('/assets/top-leftlogo-dark.png');*/
+    background-repeat: no-repeat;
+    background-position: 2px -3px;
+    padding: 10px;
+    color: #666;
+}
+#login_container{
+    text-align: right;
+}
+
+#front_logo{
+    margin-top: 10px;
+    text-align: center;
+}
+#header a{
+    color: #fff;
+}
