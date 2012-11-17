@@ -25,7 +25,7 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to submissions_url }
+        format.html { redirect_to root_url }
       else
         format.html { render action: :new }
       end
