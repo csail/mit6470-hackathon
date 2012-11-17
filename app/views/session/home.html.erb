@@ -15,6 +15,7 @@
   <div class="problem">
     <h3 class="problem-header">
       <%= link_to problem.name, new_submission_path(problem_id: problem) %>
+      (<%= problem.weight %> pts)
     </h3>
 
     <% if problem.submissions.for_user(current_user).empty? %>
