@@ -6,7 +6,7 @@
 }
 #header{
     background-color: #262626;
-    background-image: url('/assets/top-leftlogo-dark.png');
+    /*background-image: url('/assets/top-leftlogo-dark.png');*/
     background-repeat: no-repeat;
     background-position: 2px -3px;
     padding: 10px;

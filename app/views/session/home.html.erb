@@ -11,37 +11,40 @@
   <h2><%= category.name %></h2>
 
   <% category.problems.each do |problem| %>
-  <div class="problem">
+  <div class="problem row">
+    <div class="six columns">
     <h3 class="problem-header">
       <%= link_to problem.name, new_submission_path(problem_id: problem) %>
     </h3>
-
+    </div>
+    <div class="six columns">
     <% if problem.submissions.for_user(current_user).empty? %>
-      You have not yet attempted to solve this problem.
+      <p>You have not yet attempted to solve this problem. Your submissions to the problem will appear here.</p>
     <% else %>
-      <h4>Submissions</h4>
-      <% problem.submissions.for_user(current_user).recent_first.
-                 each do |submission| %>
-      <div class="solution">
-        <span class="time"><%= (submission.created_at + Time.zone_offset('EST')).strftime('%H:%M:%S') %></span> |
-        <span class="verdict">
-          <% if submission.verdict %>
-            <% if submission.verdict.accepted? %>
-              Score: <%= submission.score() %>
+        <% problem.submissions.for_user(current_user).recent_first.
+                   each do |submission| %>
+        <div class="solution">
+          <span class="time"><%= (submission.created_at + Time.zone_offset('EST')).strftime('%H:%M:%S') %></span> |
+          <span class="verdict">
+            <% if submission.verdict %>
+              <% if submission.verdict.accepted? %>
+                Score: <%= submission.score() %>
+              <% else %>
+                <%= submission.verdict.message %>
+              <% end %>
             <% else %>
-              <%= submission.verdict.message %>
+              Queued for grading
             <% end %>
-          <% else %>
-            Queued for grading
-          <% end %>
-        </span>
-
-        <div class="solution-body">
-          <%= submission.code %>
+          </span>
+  
+          <div class="solution-body">
+            <%= submission.code %>
+          </div>
         </div>
-      </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <hr />
   </div>
   <% end %>
 
