@@ -15,8 +15,9 @@
       <div id="logo_container">
       </div>
       <div id="login_container">
+        <%= link_to 'Home', '/' %>&nbsp;&nbsp;|&nbsp;&nbsp;
         <% if current_user %>
-          <%= link_to current_user.email, change_password_session_path  %>
+          <%= link_to current_user.team_name, change_password_session_path  %>
           &nbsp;&nbsp;|&nbsp;&nbsp;
           <%= link_to 'Log Out', session_path, :method => :delete %>
         <% else %>

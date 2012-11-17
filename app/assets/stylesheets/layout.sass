@@ -129,14 +129,14 @@ div#header_container
     text-shadow: none
 
     a
-      color: #999
+      color: #777
       text-decoration: none
       &:visited
-        color: #999
+        color: #777
       &:hover
-        color: #ccc
+        color: #aaa
       &:active
-        color: #999
+        color: #777
 
     div#logo_container
       float: left
@@ -157,7 +157,7 @@ div#header_container
       float: right
       text-align: right
       padding-top: 26px
-      width: 200px
+      width: 250px
 
 /* main content */
 
@@ -191,45 +191,3 @@ img.flash_close
   display: block
   float: right
   margin: 1px 0px
-
-/* page footer */
-
-div#footer_container
-  position: relative
-  z-index: 100
-  border-top: 1px solid #999
-  +box-shadow(0px, 0px, 10px, 0px, #333)
-
-  div#footer
-    width: 960px
-    margin: 0 auto
-    color: #999
-    padding: 20px 0px
-    text-shadow: none
-    a
-      color: #ff4040
-      &:visited
-        color: #ff4040
-      &:hover
-        color: #ccc
-      &:active
-        color: #ff4040
-
-  div#footer_left
-    width: 600px
-    float: left
-
-  div#footer_right
-    width: 340px
-    float: left
-    text-align: right
-    margin-left: 20px
-    img
-      margin-left: 20px
-
-div#footer_shadow_cover
-  position: relative
-  z-index: 200
-  height: 1px
-  border-bottom: 1px solid #444
-  background-color: #222

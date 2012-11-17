@@ -23,7 +23,36 @@
       <% problem.submissions.for_user(current_user).recent_first.
                  each do |submission| %>
       <div class="solution">
-        <%= submission.created_at.strftime('%H:%M:%S') %>
+        <span class="time"><%= submission.created_at.change(:offset => "-5000").strftime('%H:%M:%S') %></span> |
+        <span class="verdict">
+          <% if submission.verdict %>
+            Score: <%= submission.score() %>
+            <% if submission.verdict.accepted? %>
+              accepted
+            <% else %>
+              rejected
+            <% end %>
+          <% else %>
+            Queued for grading
+          <% end %>
+        </span>
+
+<% if submission.verdict %>
+  <% if submission.verdict.accepted? %>
+    <span class="verdict verdict-accepted">
+    <%= submission.verdict.message %>
+    </span>
+  <% else %>
+    <span class="verdict verdict-rejected">
+    <%= submission.verdict.message %>
+    </span>
+  <% end %>
+<% else %>
+<span class="verdict verdict-queued">
+  Queued
+</span>
+<% end %>
+
         <div class="solution-body">
           <%= submission.code %>
         </div>
