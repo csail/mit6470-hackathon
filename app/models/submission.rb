@@ -57,14 +57,14 @@ class Submission < ActiveRecord::Base
   def verdict_message
     verdict ? verdict.message : 'Queued'
   end
-  def verdict_message=(new_verdict_mesage)
+  def verdict_message=(new_verdict_message)
     if verdict
       verdict.message = new_verdict_message
       verdict.save!
     end
     new_verdict_message
   end
-  attr_accessible :verdict_message, as: :active_admin
+  attr_accessible :verdict_message=, as: :active_admin
 
   # Queues up the submission to a grading endpoint in a worker task.
   def queue_for_grading
