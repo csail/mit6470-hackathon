@@ -17,8 +17,6 @@
 //= require lib/foundation.min
 //= require lib/modernizr.foundation
 //= require lib/jquery.fancybox-1.3.4
-//= require lib/ace
-//= require lib/theme-monokai
 //
 //= require login
 //= require layout
