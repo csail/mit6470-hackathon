@@ -37,6 +37,8 @@ ActiveAdmin.register Problem do
       f.input :endpoint, label: 'Grading endpoint'
       f.input :published, label: 'Published'
       f.input :description_html, label: 'Description HTML'
+      f.input :code, label: 'starter code'
+      f.input :supplement, label: 'anything else they need'
     end
     f.buttons
   end

@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '>= 3.2.9'
+gem 'json'
 
 gem 'activeadmin', '>= 0.5.0',
     git: 'git://github.com/pwnall/active_admin.git', branch: 'devise-soft-dep'

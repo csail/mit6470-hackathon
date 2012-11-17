@@ -29,6 +29,9 @@ class Problem < ActiveRecord::Base
   validates :description_html, presence: true, length: 1..1.megabyte
   attr_accessible :description_html, as: :active_admin
 
+  attr_accessible :code, as: :active_admin
+  attr_accessible :supplement, as: :active_admin
+
   # User submissions for this problem.
   has_many :submissions, dependent: :destroy
 

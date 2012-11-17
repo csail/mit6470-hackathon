@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112230121) do
+ActiveRecord::Schema.define(:version => 20121117042448) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -77,8 +77,10 @@ ActiveRecord::Schema.define(:version => 20121112230121) do
     t.string  "name",                                :null => false
     t.string  "task_name",                           :null => false
     t.boolean "published",        :default => false, :null => false
-    t.integer "weight",           :default => 1,     :null => false
     t.text    "description_html",                    :null => false
+    t.integer "weight",                              :null => false
+    t.text    "code"
+    t.text    "supplement"
   end
 
   add_index "problems", ["name"], :name => "index_problems_on_name", :unique => true

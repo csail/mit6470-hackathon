@@ -1,3 +1,5 @@
+require 'json'
+
 class SubmissionsController < ApplicationController
   before_filter :require_login
 
