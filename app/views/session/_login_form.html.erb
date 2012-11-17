@@ -1,3 +1,8 @@
+<div class="row">
+<div class="five columns centered">
+<div id="front_logo">
+<%= image_tag("front-logo.png"); %>
+</div>
 <h2>Sign in</h2>
 
 <% if @redirect_url %>
@@ -8,6 +13,7 @@
 <% end %>
 
 <%= form_tag session_path, id: 'login_form' do %>
+
   <div class="field">
     <%= label_tag :email, 'Email Address' %><br />
     <span class="value">
@@ -36,6 +42,8 @@
 <% end %>
 
 <p id="new_users">
-  Don't have an account yet?
+  Don't have an account yet?<br />
   <%= link_to 'Click here to register', new_user_path %>.
 </p>
+</div>
+</div>
