@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121117202351) do
+ActiveRecord::Schema.define(:version => 20121112230121) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -78,9 +78,8 @@ ActiveRecord::Schema.define(:version => 20121117202351) do
     t.string  "task_name",                           :null => false
     t.boolean "published",        :default => false, :null => false
     t.integer "weight",           :default => 1,     :null => false
+    t.text    "starter_code",                        :null => false
     t.text    "description_html",                    :null => false
-    t.text    "code"
-    t.text    "supplement"
   end
 
   add_index "problems", ["name"], :name => "index_problems_on_name", :unique => true
@@ -113,8 +112,8 @@ ActiveRecord::Schema.define(:version => 20121117202351) do
     t.decimal  "score",         :null => false
     t.decimal  "max_score",     :null => false
     t.text     "message",       :null => false
+    t.text     "response_html", :null => false
     t.datetime "created_at",    :null => false
-    t.text     "response_html"
   end
 
   add_index "verdicts", ["submission_id"], :name => "index_verdicts_on_submission_id", :unique => true

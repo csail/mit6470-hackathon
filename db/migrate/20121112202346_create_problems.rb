@@ -8,7 +8,7 @@ class CreateProblems < ActiveRecord::Migration
       t.boolean :published, null: false, default: false
       t.integer :weight, null: false, default: 1
       # TODO(pwnall): add limit: 16.kilobytes when Rails 3.2.10 comes out
-      t.text :starting_code, null: false
+      t.text :starter_code, null: false
       # TODO(pwnall): add limit: 1.megabyte when Rails 3.2.10 comes out
       t.text :description_html, null: false
     end
