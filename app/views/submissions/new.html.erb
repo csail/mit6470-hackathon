@@ -33,33 +33,18 @@
 <%= form_for(@submission, id: 'solution_form') do |f| %>
   <%= f.hidden_field :problem_id %>
   <%= f.text_area :code %>
-  <div id="editor"><%= @submission.problem.code %></div>
+  <div id="editor"><%= @submission.code %></div>
   <div class="clear"> </div>
   <div class="centercontent">
     <%= f.button type: 'submit', :class=>'success button' do %>Submit Solution<% end %>
   </div>
 <% end %>
-
         </div>
       </div>
-      
-      <% if @submission.problem.supplement != nil %>
-      <div class="four columns">
-        <div class="panel">
-          <h4>Stock code</h4>
-            <%= @submission.problem.supplement.html_safe %>
-        </div>
-      </div>
-      <% end %>
-
     </div>
-
   </div>
-
-
-
-
 </div>
+
 <div id="myModal2" class="reveal-modal">
   Cannot submit solution. Backend does not exist, lol.
   <a class="close-reveal-modal">&#215;</a>

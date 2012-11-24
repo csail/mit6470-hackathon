@@ -12,7 +12,7 @@ class SubmissionsController < ApplicationController
     problem = Problem.find params[:problem_id]
     bounce unless problem.visible_to?(current_user)
 
-    @submission = Submission.new problem: problem
+    @submission = Submission.new problem: problem, code: problem.starter_code
     @submission.user = current_user
   end
 

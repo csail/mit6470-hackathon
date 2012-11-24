@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>6.470 Arctic Heist 2012</title>
+  <%= favicon_link_tag 'favicon.png', type: 'image/png' %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= yield :head %>
@@ -16,9 +17,12 @@
       </div>
       <div id="login_container" class="five columns">
         <%= link_to 'Home', '/' %>&nbsp;&nbsp;|&nbsp;&nbsp;
-        <%= link_to 'Scoreboard', '/scores' %>&nbsp;&nbsp;|&nbsp;&nbsp;
 
         <% if current_user %>
+          <% if current_user.admin? %>
+          <%= link_to 'Scoreboard', '/scores' %>&nbsp;&nbsp;|&nbsp;&nbsp;
+          <% end %>
+
           <%= link_to current_user.team_name, change_password_session_path  %>
           &nbsp;&nbsp;|&nbsp;&nbsp;
           <%= link_to 'Log Out', session_path, :method => :delete %>

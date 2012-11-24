@@ -5,9 +5,8 @@ class CreateSubmissions < ActiveRecord::Migration
       t.references :problem, null: false
 
       t.string :remote_ip, limit: 128, null: false
+      # TODO(pwnall): add limit: 1.megabyte when Rails 3.2.10 comes out
       t.text :code, null: false
-      # TODO(pwnall): fix rails bug -- pgsql doesn't allow limit: on text
-      # t.text :code, limit: 1.megabyte, null: false
 
       t.timestamp :created_at, null: false
     end

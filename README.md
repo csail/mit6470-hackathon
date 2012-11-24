@@ -2,6 +2,10 @@
 
 ## Development
 
+First, follow the installation instructions for the
+[sample grading endpoint](https://github.com/csail/mit6470-grader-sample).
+Asides from get
+
 Initial setup.
 
 ```bash

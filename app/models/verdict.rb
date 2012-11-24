@@ -1,9 +1,9 @@
 # A response from a grading endpoint.
 class Verdict < ActiveRecord::Base
+  # The submission that this verdict is for.
   belongs_to :submission
   validates :submission, presence: true
   validates :submission_id, presence: true, uniqueness: true
-  attr_accessible :submission
 
   # Maximum score received by the submission.
   validates :score, presence: true,
@@ -19,8 +19,14 @@ class Verdict < ActiveRecord::Base
   # HTML response page from the endpoint.
   validates :response_html, length: 1..1.megabyte, presence: true
 
+  # Parses a response from a grading endpoint into a Verdict.
+  #
+  # @param [Net::HTTPResponse] http_response the response from the grading
+  #     endpoint
+  # @param [Submission] submission the submission that will receive the parsed
+  #     verdict
   def self.from_endpoint_response(http_response, submission)
-    verdict = Verdict.new submission: submission
+    verdict = Verdict.new
     verdict.submission = submission
     verdict.response_html = http_response.body
 

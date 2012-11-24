@@ -1,3 +1,4 @@
+# Metadata for problems solved by users.
 class Problem < ActiveRecord::Base
   # CSS, JS, SQL.
   belongs_to :category
@@ -12,7 +13,7 @@ class Problem < ActiveRecord::Base
   validates :task_name, presence: true, length: 1..32, format: /^[\w-]+$/
   attr_accessible :task_name, as: :active_admin
 
-  # Grading endpoint.
+  # The grading endpoint that receives submissions for this problem.
   belongs_to :endpoint
   validates :endpoint, presence: true
   attr_accessible :endpoint_id, :endpoint, as: :active_admin
@@ -29,8 +30,9 @@ class Problem < ActiveRecord::Base
   validates :description_html, presence: true, length: 1..1.megabyte
   attr_accessible :description_html, as: :active_admin
 
-  attr_accessible :code, as: :active_admin
-  attr_accessible :supplement, as: :active_admin
+  # Default value for the code field in a new submission.
+  validates :starter_code, presence: true, length: 1..16.kilobytes
+  attr_accessible :starter_code, as: :active_admin
 
   # User submissions for this problem.
   has_many :submissions, dependent: :destroy
