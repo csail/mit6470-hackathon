@@ -11,5 +11,8 @@
 /log/*.log
 /tmp/**/*
 
+# production config.
+config/rails_pwnerer
+
 # hang onto some directory structure.
 !tmp/pids/.gitkeep
