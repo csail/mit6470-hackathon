@@ -1,5 +1,8 @@
 # 6.470 Hackathon Front-End
 
+This repository contains the Rails application used to run 6.470 hackathons.
+
+
 ## Grading Endpoints
 
 The 6.470 hackathon software is broken up into a Web front-end that keeps track
